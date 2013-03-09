@@ -16,6 +16,15 @@
 
 @implementation ViewController
 
+-(BOOL)shouldAutorotate {
+    return YES;
+}
+- (NSUInteger)supportedInterfaceOrientations {
+    return UIInterfaceOrientationMaskLandscape;
+}
+
+
+
 -(CalculatorBrain *) brain{
     if(!brain) brain = [[CalculatorBrain alloc] init];
     return brain;
