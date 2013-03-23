@@ -48,6 +48,12 @@
     [display setText:[NSString stringWithFormat:@"%g",result]];
 }
 
+- (IBAction)commandPressed:(UIButton *)sender{
+    NSString * command = [[sender titleLabel] text];
+    double result = [[self brain] performCommand:command];
+    [display setText:[NSString stringWithFormat:@"%g",result]];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
