@@ -59,8 +59,12 @@
 
 - (IBAction)commandPressed:(UIButton *)sender{
     NSString * command = [[sender titleLabel] text];
-    double result = [[self brain] performCommand:command];
-    [display setText:[NSString stringWithFormat:@"%g",result]];
+    if([@"CLX" isEqualToString:command]){
+        [[self brain] performClearCommand];
+        userIsInTheMiddleOfTypingANumber = NO;
+        userHasAlreadyPressedDecimalDelimeter = NO;
+        [display setText:[NSString stringWithFormat:@"%g",0.0]];
+    }
 }
 
 - (void)viewDidLoad

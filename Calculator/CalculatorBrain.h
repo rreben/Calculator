@@ -14,6 +14,6 @@
 
 -(void)setOperand:(double)aDouble;
 -(double)performOperation:(NSString*)operation;
--(double)performCommand:(NSString*)command;
+-(void)performClearCommand;
 
 @end

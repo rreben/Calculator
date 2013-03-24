@@ -54,13 +54,9 @@
     }
 }
 
--(double)performCommand:(NSString *)command{
-    if([@"CLX" isEqualToString:command]){
-        waitingOperand = 0;
-        waitingOperation = nil;
-        return 0;
-    }
-    return 0;
+-(void)performClearCommand{
+    waitingOperand = 0;
+    waitingOperation = nil;
 }
 
 
