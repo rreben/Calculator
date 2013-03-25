@@ -25,6 +25,8 @@
         operand = sqrt(operand);
     }else if([operation isEqualToString:@"CHS"]){
         operand = - operand;
+    }else if([operation isEqualToString:@"1/x"]){
+        operand = 1/operand;
     }else{
         // thus this is a double operator operation, do not execute immidiately
         // suppose user presses 12 + 4 sqrt = result should be 14.
