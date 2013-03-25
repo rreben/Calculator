@@ -63,6 +63,7 @@
 -(void)performClearCommand{
     waitingOperand = 0;
     waitingOperation = nil;
+    [self setOperand:0.0];
 }
 
 
