@@ -12,6 +12,8 @@
     double operand;
 }
 
+@property (nonatomic, strong) NSNumber * memoryValue;
+
 -(void)setOperand:(double)aDouble;
 -(double)performOperation:(NSString*)operation;
 -(void)performClearCommand;

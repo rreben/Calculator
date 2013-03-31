@@ -15,7 +15,11 @@
 @end
 
 
+
 @implementation CalculatorBrain
+
+@synthesize memoryValue = _memoryValue;
+
 -(void)setOperand:(double)aDouble{
     operand = aDouble;
 }

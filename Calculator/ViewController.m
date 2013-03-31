@@ -15,6 +15,9 @@
 
 @end
 
+static NSString *CalculatorMemoryContext = @"com.convincingapps.calculator.calculatorMemory";
+
+
 @implementation ViewController
 
 -(BOOL)shouldAutorotate {
@@ -24,12 +27,40 @@
     return UIInterfaceOrientationMaskLandscape;
 }
 
+-(void)dealloc{
+    [brain removeObserver:self forKeyPath:@"memoryValue"];
+//    [brain release]; // forbidden in new llvm
+//    [super dealloc]; // forbidden in new llvm
+}
 
 
 -(CalculatorBrain *) brain{
     if(!brain) brain = [[CalculatorBrain alloc] init];
+    
+    
+// http://www.dribin.org/dave/blog/archives/2008/09/24/proper_kvo_usage/
+    
+    [brain addObserver:self   // sag mir bescheid,
+                  forKeyPath:@"memoryValue" // wenn sich bar ändert
+                     options:NSKeyValueObservingOptionNew
+                     context:&CalculatorMemoryContext];
     return brain;
 }
+
+- (void) observeValueForKeyPath:(NSString *)keyPath
+                       ofObject:(id)object
+                         change:(NSDictionary *)change
+                        context:(void *)context
+{
+    if (context == &CalculatorMemoryContext && [keyPath isEqualToString:@"memoryValue"]) {
+  //      [memoryDisplay setText:[NSString stringWithFormat:@"%g",[(NSNumber*) object doubleValue]]];
+        NSLog(@"%g",[brain.memoryValue doubleValue]);
+        [memoryDisplay setText:[NSString stringWithFormat:@"%g",[brain.memoryValue doubleValue]]];
+    }else{
+        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+    }
+}
+
 -(IBAction)digitPressed:(UIButton *)sender{
     NSString * digit = [[sender titleLabel]text];
     if (userIsInTheMiddleOfTypingANumber){
@@ -64,6 +95,9 @@
         userIsInTheMiddleOfTypingANumber = NO;
         userHasAlreadyPressedDecimalDelimeter = NO;
         [display setText:[NSString stringWithFormat:@"%g",0.0]];
+    }else if ([@"STO" isEqualToString:command]){
+        brain.memoryValue = [NSNumber numberWithDouble:[[display text]doubleValue]];
+        NSLog(@"%g",[brain.memoryValue doubleValue]);
     }
 }
 

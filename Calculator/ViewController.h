@@ -11,6 +11,7 @@
 
 @interface ViewController : UIViewController{
     IBOutlet UILabel *display;
+    IBOutlet UILabel *memoryDisplay;
     CalculatorBrain * brain;
 }
 -(IBAction)digitPressed:(UIButton *)sender;
