@@ -18,6 +18,7 @@
 		DE52A07816E53B7800FD051D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DE52A07716E53B7800FD051D /* Default-568h@2x.png */; };
 		DE52A07B16E53B7800FD051D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE52A07A16E53B7800FD051D /* ViewController.m */; };
 		DE52A07E16E53B7800FD051D /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DE52A07C16E53B7800FD051D /* ViewController.xib */; };
+		DED6D8A91709B67100136906 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = DED6D8A81709B67100136906 /* README.md */; };
 		DED6F42016E91F0B00146944 /* CalculatorBrain.m in Sources */ = {isa = PBXBuildFile; fileRef = DED6F41F16E91F0B00146944 /* CalculatorBrain.m */; };
 /* End PBXBuildFile section */
 
@@ -38,6 +39,7 @@
 		DE52A07916E53B7800FD051D /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		DE52A07A16E53B7800FD051D /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		DE52A07D16E53B7800FD051D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
+		DED6D8A81709B67100136906 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		DED6F41E16E91F0B00146944 /* CalculatorBrain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalculatorBrain.h; sourceTree = "<group>"; };
 		DED6F41F16E91F0B00146944 /* CalculatorBrain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalculatorBrain.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -86,6 +88,7 @@
 		DE52A06716E53B7800FD051D /* Calculator */ = {
 			isa = PBXGroup;
 			children = (
+				DED6D8A81709B67100136906 /* README.md */,
 				DE52A07016E53B7800FD051D /* AppDelegate.h */,
 				DE52A07116E53B7800FD051D /* AppDelegate.m */,
 				DE52A07916E53B7800FD051D /* ViewController.h */,
@@ -168,6 +171,7 @@
 				DE52A07616E53B7800FD051D /* Default@2x.png in Resources */,
 				DE52A07816E53B7800FD051D /* Default-568h@2x.png in Resources */,
 				DE52A07E16E53B7800FD051D /* ViewController.xib in Resources */,
+				DED6D8A91709B67100136906 /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
