@@ -23,6 +23,7 @@ static NSString *CalculatorMemoryContext = @"com.convincingapps.calculator.calcu
 -(BOOL)shouldAutorotate {
     return YES;
 }
+
 - (NSUInteger)supportedInterfaceOrientations {
     return UIInterfaceOrientationMaskLandscape;
 }
@@ -55,7 +56,11 @@ static NSString *CalculatorMemoryContext = @"com.convincingapps.calculator.calcu
     if (context == &CalculatorMemoryContext && [keyPath isEqualToString:@"memoryValue"]) {
   //      [memoryDisplay setText:[NSString stringWithFormat:@"%g",[(NSNumber*) object doubleValue]]];
         NSLog(@"%g",[brain.memoryValue doubleValue]);
-        [memoryDisplay setText:[NSString stringWithFormat:@"%g",[brain.memoryValue doubleValue]]];
+        if (brain.memoryValue){
+            [memoryDisplay setText:[NSString stringWithFormat:@"%g",[brain.memoryValue doubleValue]]];
+        }else{
+            [memoryDisplay setText:@""];
+        }
     }else{
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
     }
@@ -65,15 +70,22 @@ static NSString *CalculatorMemoryContext = @"com.convincingapps.calculator.calcu
     NSString * digit = [[sender titleLabel]text];
     if (userIsInTheMiddleOfTypingANumber){
         if ([digit isEqualToString:@"."] && !userHasAlreadyPressedDecimalDelimeter){
-            [display setText:[[display text]stringByAppendingString:digit]];
-            userHasAlreadyPressedDecimalDelimeter = YES;
+                [display setText:[[display text]stringByAppendingString:digit]];
+                userHasAlreadyPressedDecimalDelimeter = YES;
         }else if  ([digit isEqualToString:@"."] && userHasAlreadyPressedDecimalDelimeter){
             // do nothing
         }else{
             [display setText:[[display text]stringByAppendingString:digit]];
         }
     }else{
-        [display setText:digit];
+        if ([digit isEqualToString:@"."] && !userHasAlreadyPressedDecimalDelimeter){
+            // user presses . decimal delimeter as first digit, e.g. .35 should give 0.35
+            [display setText:@"0"];
+            [display setText:[[display text]stringByAppendingString:digit]];
+            userHasAlreadyPressedDecimalDelimeter = YES;
+        }else{
+            [display setText:digit];
+        }
         userIsInTheMiddleOfTypingANumber = YES;
     }
 }
@@ -96,8 +108,13 @@ static NSString *CalculatorMemoryContext = @"com.convincingapps.calculator.calcu
         userHasAlreadyPressedDecimalDelimeter = NO;
         [display setText:[NSString stringWithFormat:@"%g",0.0]];
     }else if ([@"STO" isEqualToString:command]){
+        [[self brain] setOperand:[[display text]doubleValue]];
+        userIsInTheMiddleOfTypingANumber = NO;
+        userHasAlreadyPressedDecimalDelimeter = NO;
         brain.memoryValue = [NSNumber numberWithDouble:[[display text]doubleValue]];
         NSLog(@"%g",[brain.memoryValue doubleValue]);
+    }else if ([@"MC" isEqualToString:command]){
+        brain.memoryValue = nil;
     }
 }
 
