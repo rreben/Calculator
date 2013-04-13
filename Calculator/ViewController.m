@@ -42,9 +42,9 @@ static NSString *CalculatorMemoryContext = @"com.convincingapps.calculator.calcu
 // http://www.dribin.org/dave/blog/archives/2008/09/24/proper_kvo_usage/
     
     [brain addObserver:self   // sag mir bescheid,
-                  forKeyPath:@"memoryValue" // wenn sich bar ändert
-                     options:NSKeyValueObservingOptionNew
-                     context:&CalculatorMemoryContext];
+            forKeyPath:@"memoryValue" // wenn sich bar ändert
+               options:NSKeyValueObservingOptionNew
+               context:&CalculatorMemoryContext];
     return brain;
 }
 
@@ -89,11 +89,17 @@ static NSString *CalculatorMemoryContext = @"com.convincingapps.calculator.calcu
         userIsInTheMiddleOfTypingANumber = YES;
     }
 }
+
+-(void)pushOperandToBrain{
+    [[self brain] setOperand:[[display text]doubleValue]];
+    userIsInTheMiddleOfTypingANumber = NO;
+    userHasAlreadyPressedDecimalDelimeter = NO;
+}
+
+
 -(IBAction)operationPressed:(UIButton *)sender{
     if(userIsInTheMiddleOfTypingANumber){
-        [[self brain] setOperand:[[display text]doubleValue]];
-        userIsInTheMiddleOfTypingANumber = NO;
-        userHasAlreadyPressedDecimalDelimeter = NO;
+        [self pushOperandToBrain];
     }
     NSString * operation = [[sender titleLabel] text];
     double result = [[self brain] performOperation:operation];
@@ -108,11 +114,19 @@ static NSString *CalculatorMemoryContext = @"com.convincingapps.calculator.calcu
         userHasAlreadyPressedDecimalDelimeter = NO;
         [display setText:[NSString stringWithFormat:@"%g",0.0]];
     }else if ([@"STO" isEqualToString:command]){
-        [[self brain] setOperand:[[display text]doubleValue]];
-        userIsInTheMiddleOfTypingANumber = NO;
-        userHasAlreadyPressedDecimalDelimeter = NO;
+        [self pushOperandToBrain];
         brain.memoryValue = [NSNumber numberWithDouble:[[display text]doubleValue]];
         NSLog(@"%g",[brain.memoryValue doubleValue]);
+    }else if ([@"M+" isEqualToString:command]){
+        [self pushOperandToBrain];
+        double tmpValue = brain.memoryValue.doubleValue;
+        tmpValue += [[display text]doubleValue];
+        brain.memoryValue = [NSNumber numberWithDouble:tmpValue];
+        NSLog(@"%g",[brain.memoryValue doubleValue]);
+    }else if ([@"RCL" isEqualToString:command]){
+        [display setText:[NSString stringWithFormat:@"%g", brain.memoryValue.doubleValue]];
+        [self pushOperandToBrain];
+        brain.memoryValue = [NSNumber numberWithDouble:[[display text]doubleValue]];
     }else if ([@"MC" isEqualToString:command]){
         brain.memoryValue = nil;
     }
