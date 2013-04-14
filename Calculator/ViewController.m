@@ -129,6 +129,17 @@ static NSString *CalculatorMemoryContext = @"com.convincingapps.calculator.calcu
         brain.memoryValue = [NSNumber numberWithDouble:[[display text]doubleValue]];
     }else if ([@"MC" isEqualToString:command]){
         brain.memoryValue = nil;
+    }else if ([@"BS" isEqualToString:command]){
+        NSString * displayString = [display text];
+        if (userIsInTheMiddleOfTypingANumber) {
+            if ([displayString length] > 1) {
+                displayString = [displayString substringToIndex:[displayString length]-1];
+            } else {
+                displayString = @"0";
+                userIsInTheMiddleOfTypingANumber = NO;
+            }
+            [display setText:displayString];
+        }
     }
 }
 
