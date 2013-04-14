@@ -90,10 +90,14 @@ static NSString *CalculatorMemoryContext = @"com.convincingapps.calculator.calcu
     }
 }
 
+-(void)resetEditingMode{
+    userIsInTheMiddleOfTypingANumber = NO;
+    userHasAlreadyPressedDecimalDelimeter = NO;    
+}
+
 -(void)pushOperandToBrain{
     [[self brain] setOperand:[[display text]doubleValue]];
-    userIsInTheMiddleOfTypingANumber = NO;
-    userHasAlreadyPressedDecimalDelimeter = NO;
+    [self resetEditingMode];
 }
 
 
@@ -110,8 +114,7 @@ static NSString *CalculatorMemoryContext = @"com.convincingapps.calculator.calcu
     NSString * command = [[sender titleLabel] text];
     if([@"CLX" isEqualToString:command]){
         [[self brain] performClearCommand];
-        userIsInTheMiddleOfTypingANumber = NO;
-        userHasAlreadyPressedDecimalDelimeter = NO;
+        [self resetEditingMode];
         [display setText:[NSString stringWithFormat:@"%g",0.0]];
     }else if ([@"STO" isEqualToString:command]){
         [self pushOperandToBrain];
@@ -136,7 +139,7 @@ static NSString *CalculatorMemoryContext = @"com.convincingapps.calculator.calcu
                 displayString = [displayString substringToIndex:[displayString length]-1];
             } else {
                 displayString = @"0";
-                userIsInTheMiddleOfTypingANumber = NO;
+                [self resetEditingMode];
             }
             [display setText:displayString];
         }
