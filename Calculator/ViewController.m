@@ -108,6 +108,7 @@ static NSString *CalculatorMemoryContext = @"com.convincingapps.calculator.calcu
     NSString * operation = [[sender titleLabel] text];
     double result = [[self brain] performOperation:operation];
     [display setText:[NSString stringWithFormat:@"%g",result]];
+    [self pushOperandToBrain];
 }
 
 - (IBAction)commandPressed:(UIButton *)sender{
