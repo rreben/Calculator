@@ -47,6 +47,10 @@
     return operand;
 }
 
+-(double)returnPi{
+    return (double)M_PI;
+}
+
 -(void)performWaitingOperation{
     if([@"+" isEqual:waitingOperation]){
         operand = waitingOperand + operand;

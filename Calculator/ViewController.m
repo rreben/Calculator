@@ -130,6 +130,13 @@ static NSString *CalculatorMemoryContext = @"com.convincingapps.calculator.calcu
         [display setText:[NSString stringWithFormat:@"%g", brain.memoryValue.doubleValue]];
         [self pushOperandToBrain];
         brain.memoryValue = [NSNumber numberWithDouble:[[display text]doubleValue]];
+    }else if ([@"PI" isEqualToString:command]){
+        // [brain returnPi] does not work when brain is not inititialized
+        // in this case you would have to press pi for two times
+        // [[self brain] returnPi] provides the necessary two calls in case of
+        // late instantiation. It is better to initialize brain in the setup.
+        [display setText:[NSString stringWithFormat:@"%g", [[self brain] returnPi]]];
+        [self pushOperandToBrain];
     }else if ([@"MC" isEqualToString:command]){
         brain.memoryValue = nil;
     }else if ([@"BS" isEqualToString:command]){
