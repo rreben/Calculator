@@ -14,8 +14,11 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    NSString *name = [[NSUserDefaults standardUserDefaults] stringForKey:@"user_name"];
-    NSLog(@"name before is %@", name);
+    
+    
+//    PSMultiValueSpecifier *name = [[NSUserDefaults standardUserDefaults] stringForKey:@"user_name"];
+    NSString* value = [[NSUserDefaults standardUserDefaults] stringForKey:@"unit_for_calculation_triogonometric_functions"];
+    NSLog(@"name before is %@", value);
         
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];

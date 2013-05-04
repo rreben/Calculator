@@ -6,7 +6,7 @@
 	<array>
 		<dict>
 			<key>Title</key>
-			<string>User Info</string>
+			<string>Trigonometry</string>
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 		</dict>
@@ -14,67 +14,21 @@
 			<key>Type</key>
 			<string>PSMultiValueSpecifier</string>
 			<key>Title</key>
-			<string>Experience Level</string>
+			<string>Unit for calculating</string>
 			<key>Key</key>
-			<string>experience_preference</string>
+			<string>unit_for_calculation_triogonometric_functions</string>
 			<key>DefaultValue</key>
-			<string></string>
+			<string>degrees</string>
 			<key>Values</key>
 			<array>
-				<string>0</string>
-				<string>1</string>
-				<string>2</string>
+				<string>degrees</string>
+				<string>radians</string>
 			</array>
 			<key>Titles</key>
 			<array>
-				<string>Beginner</string>
-				<string>Expert</string>
-				<string>Master</string>
+				<string>degrees</string>
+				<string>radians</string>
 			</array>
-		</dict>
-		<dict>
-			<key>Type</key>
-			<string>PSTextFieldSpecifier</string>
-			<key>Title</key>
-			<string>Name</string>
-			<key>Key</key>
-			<string>user_name</string>
-		</dict>
-		<dict>
-			<key>Title</key>
-			<string>Sound</string>
-			<key>Type</key>
-			<string>PSGroupSpecifier</string>
-		</dict>
-		<dict>
-			<key>Type</key>
-			<string>PSToggleSwitchSpecifier</string>
-			<key>Title</key>
-			<string>3D_sound_preference</string>
-			<key>Key</key>
-			<string>3D Sound</string>
-			<key>DefaultValue</key>
-			<false/>
-		</dict>
-		<dict>
-			<key>Type</key>
-			<string>PSToggleSwitchSpecifier</string>
-			<key>Title</key>
-			<string>Play Sound</string>
-			<key>Key</key>
-			<string>play_sounds_preference</string>
-			<key>DefaultValue</key>
-			<false/>
-		</dict>
-		<dict>
-			<key>Type</key>
-			<string>PSToggleSwitchSpecifier</string>
-			<key>Title</key>
-			<string></string>
-			<key>Key</key>
-			<string></string>
-			<key>DefaultValue</key>
-			<false/>
 		</dict>
 	</array>
 	<key>StringsTable</key>
