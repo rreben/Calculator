@@ -6,53 +6,75 @@
 	<array>
 		<dict>
 			<key>Title</key>
-			<string>Group</string>
+			<string>User Info</string>
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 		</dict>
 		<dict>
-			<key>AutocapitalizationType</key>
-			<string>None</string>
-			<key>AutocorrectionType</key>
-			<string>No</string>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+			<key>Title</key>
+			<string>Experience Level</string>
+			<key>Key</key>
+			<string>experience_preference</string>
 			<key>DefaultValue</key>
 			<string></string>
-			<key>IsSecure</key>
-			<false/>
-			<key>Key</key>
-			<string>name_preference</string>
-			<key>KeyboardType</key>
-			<string>Alphabet</string>
-			<key>Title</key>
-			<string>Name</string>
+			<key>Values</key>
+			<array>
+				<string>0</string>
+				<string>1</string>
+				<string>2</string>
+			</array>
+			<key>Titles</key>
+			<array>
+				<string>Beginner</string>
+				<string>Expert</string>
+				<string>Master</string>
+			</array>
+		</dict>
+		<dict>
 			<key>Type</key>
 			<string>PSTextFieldSpecifier</string>
+			<key>Title</key>
+			<string>Name</string>
+			<key>Key</key>
+			<string>user_name</string>
 		</dict>
 		<dict>
-			<key>DefaultValue</key>
-			<true/>
-			<key>Key</key>
-			<string>enabled_preference</string>
 			<key>Title</key>
-			<string>Enabled</string>
+			<string>Sound</string>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+		</dict>
+		<dict>
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
+			<key>Title</key>
+			<string>3D_sound_preference</string>
+			<key>Key</key>
+			<string>3D Sound</string>
+			<key>DefaultValue</key>
+			<false/>
 		</dict>
 		<dict>
-			<key>DefaultValue</key>
-			<real>0.5</real>
-			<key>Key</key>
-			<string>slider_preference</string>
-			<key>MaximumValue</key>
-			<integer>1</integer>
-			<key>MaximumValueImage</key>
-			<string></string>
-			<key>MinimumValue</key>
-			<integer>0</integer>
-			<key>MinimumValueImage</key>
-			<string></string>
 			<key>Type</key>
-			<string>PSSliderSpecifier</string>
+			<string>PSToggleSwitchSpecifier</string>
+			<key>Title</key>
+			<string>Play Sound</string>
+			<key>Key</key>
+			<string>play_sounds_preference</string>
+			<key>DefaultValue</key>
+			<false/>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+			<key>Title</key>
+			<string></string>
+			<key>Key</key>
+			<string></string>
+			<key>DefaultValue</key>
+			<false/>
 		</dict>
 	</array>
 	<key>StringsTable</key>
