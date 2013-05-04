@@ -14,6 +14,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    NSString *name = [[NSUserDefaults standardUserDefaults] stringForKey:@"user_name"];
+    NSLog(@"name before is %@", name);
+        
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.viewController = [[ViewController alloc] initWithNibName:@"ViewController" bundle:nil];
@@ -21,6 +25,9 @@
     [self.window makeKeyAndVisible];
     return YES;
 }
+
+
+
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {
