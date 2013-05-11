@@ -18,5 +18,7 @@
 -(double)performOperation:(NSString*)operation;
 -(void)performClearCommand;
 -(double)returnPi;
+-(void)setTrigonometriyToDegrees;
+-(void)setTrigonometriyToRadians;
 
 @end

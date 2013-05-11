@@ -11,6 +11,7 @@
 @interface CalculatorBrain(){
     NSString * waitingOperation;
     double waitingOperand;
+    BOOL hasToTransforDegreesToRadians;
 }
 @end
 
@@ -19,6 +20,20 @@
 @implementation CalculatorBrain
 
 @synthesize memoryValue = _memoryValue;
+
+-(id) init{
+    self = [super init];
+    hasToTransforDegreesToRadians = NO;
+    return self;
+}
+
+-(void)setTrigonometriyToDegrees{
+    hasToTransforDegreesToRadians = YES;
+};
+-(void)setTrigonometriyToRadians{
+    hasToTransforDegreesToRadians = NO;
+};
+
 
 -(void)setOperand:(double)aDouble{
     operand = aDouble;
@@ -32,8 +47,10 @@
     }else if([operation isEqualToString:@"1/x"]){
         operand = 1/operand;
     }else if([operation isEqualToString:@"sin"]){
+        if (hasToTransforDegreesToRadians) operand = operand * 2 * [self returnPi] / 360.0;
         operand = sin(operand);
     }else if([operation isEqualToString:@"cos"]){
+        if (hasToTransforDegreesToRadians) operand = operand * 2 * [self returnPi] / 360.0;
         operand = cos(operand);
     }else{
         // thus this is a double operator operation, do not execute immidiately
