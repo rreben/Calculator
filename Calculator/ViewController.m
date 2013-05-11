@@ -38,19 +38,17 @@ static NSString *CalculatorMemoryContext = @"com.convincingapps.calculator.calcu
 
 
 -(CalculatorBrain *) brain{
-    if(!_brain) _brain = [[CalculatorBrain alloc] init];
-    
-    
-// http://www.dribin.org/dave/blog/archives/2008/09/24/proper_kvo_usage/
-    
-    [_brain addObserver:self   // sag mir bescheid,
-            forKeyPath:@"memoryValue" // wenn sich bar ändert
-               options:NSKeyValueObservingOptionNew
-               context:&CalculatorMemoryContext];
-
-    NSLog(@"%@",[self userSettingUnitForCalculationTrigonometricFunctions]);
-    
-
+    if(!_brain){
+        _brain = [[CalculatorBrain alloc] init];
+        // http://www.dribin.org/dave/blog/archives/2008/09/24/proper_kvo_usage/
+        
+        [_brain addObserver:self   // sag mir bescheid,
+                 forKeyPath:@"memoryValue" // wenn sich bar ändert
+                    options:NSKeyValueObservingOptionNew
+                    context:&CalculatorMemoryContext];
+        
+        NSLog(@"%@",[self userSettingUnitForCalculationTrigonometricFunctions]);
+    }
     return _brain;
 }
 
@@ -169,9 +167,22 @@ static NSString *CalculatorMemoryContext = @"com.convincingapps.calculator.calcu
     }
 }
 
+-(void)defaultsChanged:(NSNotification*)notification {
+    // Get the user defaults
+    NSUserDefaults*defaults =(NSUserDefaults*)[notification object];
+    // Do something with it
+    NSLog(@"%@",[defaults objectForKey:@"unit_for_calculation_triogonometric_functions"]);
+}
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    NSNotificationCenter* center =[NSNotificationCenter defaultCenter];
+    [center addObserver:self
+               selector:@selector(defaultsChanged:)
+                   name:NSUserDefaultsDidChangeNotification
+                 object:nil];
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
