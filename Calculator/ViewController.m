@@ -47,19 +47,10 @@ static NSString *CalculatorMemoryContext = @"com.convincingapps.calculator.calcu
                     options:NSKeyValueObservingOptionNew
                     context:&CalculatorMemoryContext];
         
-        NSLog(@"%@",[self userSettingUnitForCalculationTrigonometricFunctions]);
+//        NSLog(@"%@",[self userSettingUnitForCalculationTrigonometricFunctions]);
     }
     return _brain;
 }
-
--(NSString *)userSettingUnitForCalculationTrigonometricFunctions{
-    NSString* value = [[NSUserDefaults standardUserDefaults] stringForKey:@"unit_for_calculation_triogonometric_functions"];
-    if (!([@"degrees" isEqualToString:value] || [@"radians" isEqualToString:value])){
-        value = @"degrees";
-    }
-    return value;
-}
-
 
 - (void) observeValueForKeyPath:(NSString *)keyPath
                        ofObject:(id)object
@@ -167,11 +158,18 @@ static NSString *CalculatorMemoryContext = @"com.convincingapps.calculator.calcu
     }
 }
 
+
+-(NSString *)userSettingUnitForCalculationTrigonometricFunctions{
+    NSString* value = [[NSUserDefaults standardUserDefaults] stringForKey:@"unit_for_calculation_triogonometric_functions"];
+    if (!([@"degrees" isEqualToString:value] || [@"radians" isEqualToString:value])){
+        value = @"degrees";
+    }
+    return value;
+}
+
+
 -(void)defaultsChanged:(NSNotification*)notification {
-    // Get the user defaults
-    NSUserDefaults*defaults =(NSUserDefaults*)[notification object];
-    // Do something with it
-    NSLog(@"%@",[defaults objectForKey:@"unit_for_calculation_triogonometric_functions"]);
+    NSLog(@"%@",[self userSettingUnitForCalculationTrigonometricFunctions]);
 }
 
 
