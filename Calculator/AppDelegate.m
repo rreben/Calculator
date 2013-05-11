@@ -15,11 +15,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     
+    NSLog(@"%@",[self userSettingUnitForCalculationTrigonometricFunctions]);
     
-//    PSMultiValueSpecifier *name = [[NSUserDefaults standardUserDefaults] stringForKey:@"user_name"];
-    NSString* value = [[NSUserDefaults standardUserDefaults] stringForKey:@"unit_for_calculation_triogonometric_functions"];
-    NSLog(@"name before is %@", value);
-        
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
@@ -29,7 +26,13 @@
     return YES;
 }
 
-
+-(NSString *)userSettingUnitForCalculationTrigonometricFunctions{
+    NSString* value = [[NSUserDefaults standardUserDefaults] stringForKey:@"unit_for_calculation_triogonometric_functions"];
+    if (!([@"degrees" isEqualToString:value] || [@"radians" isEqualToString:value])){
+        value = @"degrees";
+    }
+    return value;
+}
 
 
 - (void)applicationWillResignActive:(UIApplication *)application
