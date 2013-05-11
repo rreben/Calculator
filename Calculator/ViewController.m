@@ -20,6 +20,8 @@ static NSString *CalculatorMemoryContext = @"com.convincingapps.calculator.calcu
 
 @implementation ViewController
 
+@synthesize brain = _brain;
+
 -(BOOL)shouldAutorotate {
     return YES;
 }
@@ -29,24 +31,37 @@ static NSString *CalculatorMemoryContext = @"com.convincingapps.calculator.calcu
 }
 
 -(void)dealloc{
-    [brain removeObserver:self forKeyPath:@"memoryValue"];
+//    [brain removeObserver:self forKeyPath:@"memoryValue"];
 //    [brain release]; // forbidden in new llvm
 //    [super dealloc]; // forbidden in new llvm
 }
 
 
 -(CalculatorBrain *) brain{
-    if(!brain) brain = [[CalculatorBrain alloc] init];
+    if(!_brain) _brain = [[CalculatorBrain alloc] init];
     
     
 // http://www.dribin.org/dave/blog/archives/2008/09/24/proper_kvo_usage/
     
-    [brain addObserver:self   // sag mir bescheid,
+    [_brain addObserver:self   // sag mir bescheid,
             forKeyPath:@"memoryValue" // wenn sich bar ändert
                options:NSKeyValueObservingOptionNew
                context:&CalculatorMemoryContext];
-    return brain;
+
+    NSLog(@"%@",[self userSettingUnitForCalculationTrigonometricFunctions]);
+    
+
+    return _brain;
 }
+
+-(NSString *)userSettingUnitForCalculationTrigonometricFunctions{
+    NSString* value = [[NSUserDefaults standardUserDefaults] stringForKey:@"unit_for_calculation_triogonometric_functions"];
+    if (!([@"degrees" isEqualToString:value] || [@"radians" isEqualToString:value])){
+        value = @"degrees";
+    }
+    return value;
+}
+
 
 - (void) observeValueForKeyPath:(NSString *)keyPath
                        ofObject:(id)object
@@ -55,9 +70,9 @@ static NSString *CalculatorMemoryContext = @"com.convincingapps.calculator.calcu
 {
     if (context == &CalculatorMemoryContext && [keyPath isEqualToString:@"memoryValue"]) {
   //      [memoryDisplay setText:[NSString stringWithFormat:@"%g",[(NSNumber*) object doubleValue]]];
-        NSLog(@"%g",[brain.memoryValue doubleValue]);
-        if (brain.memoryValue){
-            [memoryDisplay setText:[NSString stringWithFormat:@"%g",[brain.memoryValue doubleValue]]];
+        NSLog(@"%g",[self.brain.memoryValue doubleValue]);
+        if (self.brain.memoryValue){
+            [memoryDisplay setText:[NSString stringWithFormat:@"%g",[self.brain.memoryValue doubleValue]]];
         }else{
             [memoryDisplay setText:@""];
         }
@@ -119,18 +134,18 @@ static NSString *CalculatorMemoryContext = @"com.convincingapps.calculator.calcu
         [display setText:[NSString stringWithFormat:@"%g",0.0]];
     }else if ([@"STO" isEqualToString:command]){
         [self pushOperandToBrain];
-        brain.memoryValue = [NSNumber numberWithDouble:[[display text]doubleValue]];
-        NSLog(@"%g",[brain.memoryValue doubleValue]);
+        self.brain.memoryValue = [NSNumber numberWithDouble:[[display text]doubleValue]];
+        NSLog(@"%g",[self.brain.memoryValue doubleValue]);
     }else if ([@"M+" isEqualToString:command]){
         [self pushOperandToBrain];
-        double tmpValue = brain.memoryValue.doubleValue;
+        double tmpValue = self.brain.memoryValue.doubleValue;
         tmpValue += [[display text]doubleValue];
-        brain.memoryValue = [NSNumber numberWithDouble:tmpValue];
-        NSLog(@"%g",[brain.memoryValue doubleValue]);
+        self.brain.memoryValue = [NSNumber numberWithDouble:tmpValue];
+        NSLog(@"%g",[self.brain.memoryValue doubleValue]);
     }else if ([@"RCL" isEqualToString:command]){
-        [display setText:[NSString stringWithFormat:@"%g", brain.memoryValue.doubleValue]];
+        [display setText:[NSString stringWithFormat:@"%g", self.brain.memoryValue.doubleValue]];
         [self pushOperandToBrain];
-        brain.memoryValue = [NSNumber numberWithDouble:[[display text]doubleValue]];
+        self.brain.memoryValue = [NSNumber numberWithDouble:[[display text]doubleValue]];
     }else if ([@"PI" isEqualToString:command]){
         // [brain returnPi] does not work when brain is not inititialized
         // in this case you would have to press pi for two times
@@ -139,7 +154,7 @@ static NSString *CalculatorMemoryContext = @"com.convincingapps.calculator.calcu
         [display setText:[NSString stringWithFormat:@"%g", [[self brain] returnPi]]];
         [self pushOperandToBrain];
     }else if ([@"MC" isEqualToString:command]){
-        brain.memoryValue = nil;
+        self.brain.memoryValue = nil;
     }else if ([@"BS" isEqualToString:command]){
         NSString * displayString = [display text];
         if (userIsInTheMiddleOfTypingANumber) {

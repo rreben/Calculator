@@ -12,8 +12,11 @@
 @interface ViewController : UIViewController{
     IBOutlet UILabel *display;
     IBOutlet UILabel *memoryDisplay;
-    CalculatorBrain * brain;
+    CalculatorBrain * _brain;
 }
+
+@property (nonatomic,strong) CalculatorBrain * brain;
+
 -(IBAction)digitPressed:(UIButton *)sender;
 -(IBAction)operationPressed:(UIButton *)sender;
 -(IBAction)commandPressed:(UIButton *)sender;
