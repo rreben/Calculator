@@ -47,7 +47,13 @@ static NSString *CalculatorMemoryContext = @"com.convincingapps.calculator.calcu
                     options:NSKeyValueObservingOptionNew
                     context:&CalculatorMemoryContext];
         
-//        NSLog(@"%@",[self userSettingUnitForCalculationTrigonometricFunctions]);
+
+        if ([[self userSettingUnitForCalculationTrigonometricFunctions] isEqualToString:@"degrees"])
+            [_brain setTrigonometriyToDegrees];
+        if ([[self userSettingUnitForCalculationTrigonometricFunctions] isEqualToString:@"radians"])
+            [_brain setTrigonometriyToRadians];
+
+        //        NSLog(@"%@",[self userSettingUnitForCalculationTrigonometricFunctions]);
     }
     return _brain;
 }
@@ -169,6 +175,10 @@ static NSString *CalculatorMemoryContext = @"com.convincingapps.calculator.calcu
 
 
 -(void)defaultsChanged:(NSNotification*)notification {
+    if ([[self userSettingUnitForCalculationTrigonometricFunctions] isEqualToString:@"degrees"])
+        [_brain setTrigonometriyToDegrees];
+    if ([[self userSettingUnitForCalculationTrigonometricFunctions] isEqualToString:@"radians"])
+        [_brain setTrigonometriyToRadians];
     NSLog(@"%@",[self userSettingUnitForCalculationTrigonometricFunctions]);
 }
 
