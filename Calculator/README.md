@@ -10,6 +10,5 @@ Todos:
 + correct bug. result of calculation has to be usable as input of next calculation. (done)
 + correct bug. Division does not work (done)
 + switch radians (0 t 2 pi, default) in degrees, try UI Switch (done)
-
-+ Refactoring: dnry with setting degree or radians on brain / model
-+ Refactoring: use boolean property to enable KVO and dnry.
+  + Refactoring: dnry with setting degree or radians on brain / model (done)
+  + Refactoring: use boolean property to enable KVO and dnry (done)
