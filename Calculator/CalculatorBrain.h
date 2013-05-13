@@ -13,6 +13,8 @@
 }
 
 @property (nonatomic, strong) NSNumber * memoryValue;
+//@property (nonatomic) BOOL calculatingDegreesToRadians;
+@property (nonatomic, getter = isCalculatingDegreesToRadians) BOOL calculatingDegreesToRadians;
 
 -(void)setOperand:(double)aDouble;
 -(double)performOperation:(NSString*)operation;

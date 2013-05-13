@@ -16,6 +16,7 @@
 @end
 
 static NSString *CalculatorMemoryContext = @"com.convincingapps.calculator.calculatorMemory";
+static NSString *CalculatorTrigonometryContext = @"com.convincingapps.calculator.caclculatorTrigonometryContext";
 
 
 @implementation ViewController
@@ -46,6 +47,11 @@ static NSString *CalculatorMemoryContext = @"com.convincingapps.calculator.calcu
                  forKeyPath:@"memoryValue" // wenn sich bar ändert
                     options:NSKeyValueObservingOptionNew
                     context:&CalculatorMemoryContext];
+
+        [_brain addObserver:self   // sag mir bescheid,
+                 forKeyPath:@"calculatingDegreesToRadians" // wenn sich bar ändert
+                    options:NSKeyValueObservingOptionNew
+                    context:&CalculatorTrigonometryContext];
         
 
         if ([[self userSettingUnitForCalculationTrigonometricFunctions] isEqualToString:@"degrees"])
@@ -71,6 +77,12 @@ static NSString *CalculatorMemoryContext = @"com.convincingapps.calculator.calcu
         }else{
             [memoryDisplay setText:@""];
         }
+    }else if (context == &CalculatorTrigonometryContext && [keyPath isEqualToString:@"calculatingDegreesToRadians"]) {
+            if (self.brain.isCalculatingDegreesToRadians){
+                [trigonometryDisplay setText:@"DEG"];
+            }else{
+                [trigonometryDisplay setText:@"RAD"];
+            }
     }else{
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
     }

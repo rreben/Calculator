@@ -20,6 +20,11 @@
 @implementation CalculatorBrain
 
 @synthesize memoryValue = _memoryValue;
+@synthesize calculatingDegreesToRadians;
+
+//-(BOOL) isCalculatingDegreesToRadians{  
+//    return hasToTransforDegreesToRadians;
+//}
 
 -(id) init{
     self = [super init];
@@ -29,9 +34,11 @@
 
 -(void)setTrigonometriyToDegrees{
     hasToTransforDegreesToRadians = YES;
+    self.calculatingDegreesToRadians = YES;
 };
 -(void)setTrigonometriyToRadians{
     hasToTransforDegreesToRadians = NO;
+    self.calculatingDegreesToRadians = NO;
 };
 
 

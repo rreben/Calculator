@@ -12,6 +12,7 @@
 @interface ViewController : UIViewController{
     IBOutlet UILabel *display;
     IBOutlet UILabel *memoryDisplay;
+    IBOutlet UILabel *trigonometryDisplay;
     CalculatorBrain * _brain;
 }
 
