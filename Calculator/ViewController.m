@@ -55,9 +55,9 @@ static NSString *CalculatorTrigonometryContext = @"com.convincingapps.calculator
         
 
         if ([[self userSettingUnitForCalculationTrigonometricFunctions] isEqualToString:@"degrees"])
-            [_brain setTrigonometriyToDegrees];
+            self.brain.calculatingDegreesToRadians = YES;
         if ([[self userSettingUnitForCalculationTrigonometricFunctions] isEqualToString:@"radians"])
-            [_brain setTrigonometriyToRadians];
+            self.brain.calculatingDegreesToRadians = NO;
 
         //        NSLog(@"%@",[self userSettingUnitForCalculationTrigonometricFunctions]);
     }
@@ -188,10 +188,10 @@ static NSString *CalculatorTrigonometryContext = @"com.convincingapps.calculator
 
 -(void)defaultsChanged:(NSNotification*)notification {
     if ([[self userSettingUnitForCalculationTrigonometricFunctions] isEqualToString:@"degrees"])
-        [_brain setTrigonometriyToDegrees];
+        // dot notation important, this adds code for KVO
+        self.brain.calculatingDegreesToRadians = YES;
     if ([[self userSettingUnitForCalculationTrigonometricFunctions] isEqualToString:@"radians"])
-        [_brain setTrigonometriyToRadians];
-    NSLog(@"%@",[self userSettingUnitForCalculationTrigonometricFunctions]);
+        self.brain.calculatingDegreesToRadians = NO;
 }
 
 
