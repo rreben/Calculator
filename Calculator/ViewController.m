@@ -12,7 +12,7 @@
 
 @interface ViewController (){
     BOOL userIsInTheMiddleOfTypingANumber;
-    BOOL userHasAlreadyPressedDecimalDelimeter;
+//    BOOL userHasAlreadyPressedDecimalDelimeter;
 }
 
 @end
@@ -85,23 +85,28 @@ static NSString *CalculatorTrigonometryContext = @"com.convincingapps.calculator
     }
 }
 
+-(BOOL)isStringAlreadyContainingDecimalDelimeter:(NSString *)aString{
+    NSRange range = [aString rangeOfString:@"."];
+    if (range.location == NSNotFound) { return NO; }
+    else {return YES;}
+ 
+}
+
 -(IBAction)digitPressed:(UIButton *)sender{
     NSString * digit = [[sender titleLabel]text];
     if (userIsInTheMiddleOfTypingANumber){
-        if ([digit isEqualToString:@"."] && !userHasAlreadyPressedDecimalDelimeter){
+        if ([digit isEqualToString:@"."] && ![self isStringAlreadyContainingDecimalDelimeter:[display text]]){
                 [display setText:[[display text]stringByAppendingString:digit]];
-                userHasAlreadyPressedDecimalDelimeter = YES;
-        }else if  ([digit isEqualToString:@"."] && userHasAlreadyPressedDecimalDelimeter){
+        }else if  ([digit isEqualToString:@"."] && [self isStringAlreadyContainingDecimalDelimeter:[display text]]){
             // do nothing
         }else{
             [display setText:[[display text]stringByAppendingString:digit]];
         }
     }else{
-        if ([digit isEqualToString:@"."] && !userHasAlreadyPressedDecimalDelimeter){
+        if ([digit isEqualToString:@"."] && [self isStringAlreadyContainingDecimalDelimeter:[display text]]){
             // user presses . decimal delimeter as first digit, e.g. .35 should give 0.35
             [display setText:@"0"];
             [display setText:[[display text]stringByAppendingString:digit]];
-            userHasAlreadyPressedDecimalDelimeter = YES;
         }else{
             [display setText:digit];
         }
@@ -111,7 +116,6 @@ static NSString *CalculatorTrigonometryContext = @"com.convincingapps.calculator
 
 -(void)resetEditingMode{
     userIsInTheMiddleOfTypingANumber = NO;
-    userHasAlreadyPressedDecimalDelimeter = NO;    
 }
 
 -(void)pushOperandToBrain{
