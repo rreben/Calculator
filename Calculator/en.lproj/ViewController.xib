@@ -378,7 +378,6 @@
 						<string key="NSFrame">{{420, 236}, {50, 50}}</string>
 						<reference key="NSSuperview" ref="774585933"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -431,15 +430,30 @@
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<int key="IBUIButtonType">1</int>
-						<string key="IBUINormalTitle">=</string>
-						<reference key="IBUIHighlightedTitleColor" ref="611632664"/>
-						<object class="NSColor" key="IBUINormalTitleColor">
-							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
+						<bool key="IBUIHasAttributedTitle">YES</bool>
+						<object class="NSAttributedString" key="IBUINormalAttributedTitle">
+							<string key="NSString">Enter</string>
+							<dictionary key="NSAttributes">
+								<object class="NSColor" key="NSColor">
+									<int key="NSColorSpace">1</int>
+									<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
+								</object>
+								<reference key="NSFont" ref="51330131"/>
+								<object class="NSMutableParagraphStyle" key="NSParagraphStyle">
+									<int key="NSAlignment">4</int>
+									<nil key="NSTabStops"/>
+								</object>
+							</dictionary>
 						</object>
-						<reference key="IBUINormalTitleShadowColor" ref="735286613"/>
-						<reference key="IBUIFontDescription" ref="1060191965"/>
-						<reference key="IBUIFont" ref="51330131"/>
+						<object class="IBUIFontDescription" key="IBUIFontDescription" id="81885342">
+							<int key="type">1</int>
+							<double key="pointSize">17</double>
+						</object>
+						<object class="NSFont" key="IBUIFont" id="150973037">
+							<string key="NSName">Helvetica</string>
+							<double key="NSSize">17</double>
+							<int key="NSfFlags">16</int>
+						</object>
 					</object>
 					<object class="IBUIButton" id="877866958">
 						<reference key="NSNextResponder" ref="774585933"/>
@@ -700,7 +714,7 @@
 						<string key="NSFrame">{{12, 9}, {458, 46}}</string>
 						<reference key="NSSuperview" ref="774585933"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="83250904"/>
+						<reference key="NSNextKeyView" ref="105907996"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<reference key="IBUIBackgroundColor" ref="611632664"/>
 						<bool key="IBUIOpaque">NO</bool>
@@ -745,15 +759,8 @@
 						<reference key="IBUITextColor" ref="373281010"/>
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">0</int>
-						<object class="IBUIFontDescription" key="IBUIFontDescription" id="81885342">
-							<int key="type">1</int>
-							<double key="pointSize">17</double>
-						</object>
-						<object class="NSFont" key="IBUIFont" id="1073026151">
-							<string key="NSName">Helvetica</string>
-							<double key="NSSize">17</double>
-							<int key="NSfFlags">16</int>
-						</object>
+						<reference key="IBUIFontDescription" ref="81885342"/>
+						<reference key="IBUIFont" ref="150973037"/>
 						<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 					</object>
 					<object class="IBUILabel" id="105907996">
@@ -762,6 +769,7 @@
 						<string key="NSFrame">{{411, 39}, {42, 21}}</string>
 						<reference key="NSSuperview" ref="774585933"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="83250904"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -773,7 +781,7 @@
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">0</int>
 						<reference key="IBUIFontDescription" ref="81885342"/>
-						<reference key="IBUIFont" ref="1073026151"/>
+						<reference key="IBUIFont" ref="150973037"/>
 						<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 					</object>
 				</array>
@@ -960,12 +968,12 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">operationPressed:</string>
+						<string key="label">enterPressed</string>
 						<reference key="source" ref="368814972"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
-					<int key="connectionID">184</int>
+					<int key="connectionID">3161</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
@@ -3995,6 +4003,7 @@
 				<string key="179.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="1790.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="183.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<real value="0.0" key="183.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<array key="183.IBViewMetadataConstraints">
 					<reference ref="521638831"/>
 				</array>
@@ -4341,7 +4350,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">3159</int>
+			<int key="maxID">3161</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -4359,6 +4368,8 @@
 					<dictionary class="NSMutableDictionary" key="actions">
 						<string key="commandPressed:">UIButton</string>
 						<string key="digitPressed:">UIButton</string>
+						<string key="enterPressed">id</string>
+						<string key="enterPressed:">UIButton</string>
 						<string key="operationPressed:">UIButton</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
@@ -4368,6 +4379,14 @@
 						</object>
 						<object class="IBActionInfo" key="digitPressed:">
 							<string key="name">digitPressed:</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBActionInfo" key="enterPressed">
+							<string key="name">enterPressed</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="enterPressed:">
+							<string key="name">enterPressed:</string>
 							<string key="candidateClassName">UIButton</string>
 						</object>
 						<object class="IBActionInfo" key="operationPressed:">

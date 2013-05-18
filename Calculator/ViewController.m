@@ -7,6 +7,8 @@
 //
 
 #import "ViewController.h"
+#import "CalculatorBrain.h"
+
 
 @interface ViewController (){
     BOOL userIsInTheMiddleOfTypingANumber;
@@ -113,7 +115,13 @@ static NSString *CalculatorTrigonometryContext = @"com.convincingapps.calculator
 }
 
 -(void)pushOperandToBrain{
-    [[self brain] setOperand:[[display text]doubleValue]];
+    [[self brain] pushOperand:[[display text]doubleValue]];
+    [self resetEditingMode];
+}
+
+-(IBAction)enterPressed{
+    NSLog(@"%@",@"enterPressed");
+    [self.brain pushOperand:[display.text doubleValue]];
     [self resetEditingMode];
 }
 
