@@ -120,12 +120,14 @@ static NSString *CalculatorTrigonometryContext = @"com.convincingapps.calculator
 
 -(void)pushOperandToBrain{
     [[self brain] pushOperand:[[display text]doubleValue]];
+    [self appendToCalculation:[display text]];
     [self resetEditingMode];
 }
 
 -(IBAction)enterPressed{
     NSLog(@"%@",@"enterPressed");
     [self.brain pushOperand:[display.text doubleValue]];
+    [self appendToCalculation:[display text]];
     [self resetEditingMode];
 }
 
@@ -135,7 +137,10 @@ static NSString *CalculatorTrigonometryContext = @"com.convincingapps.calculator
         [self pushOperandToBrain];
     }
     NSString * operation = [[sender titleLabel] text];
+    [self appendToCalculation:operation];
     double result = [[self brain] performOperation:operation];
+    [self appendToCalculation:@"="];
+    [self appendToCalculation:[NSString stringWithFormat:@"%g",result]];
     [display setText:[NSString stringWithFormat:@"%g",result]];
 //    [self pushOperandToBrain];
 }
@@ -146,6 +151,7 @@ static NSString *CalculatorTrigonometryContext = @"com.convincingapps.calculator
         [[self brain] performClearCommand];
         [self resetEditingMode];
         [display setText:[NSString stringWithFormat:@"%g",0.0]];
+        [inputStrip setText:@""];
     }else if ([@"STO" isEqualToString:command]){
         [self pushOperandToBrain];
         self.brain.memoryValue = [NSNumber numberWithDouble:[[display text]doubleValue]];
@@ -181,6 +187,11 @@ static NSString *CalculatorTrigonometryContext = @"com.convincingapps.calculator
             [display setText:displayString];
         }
     }
+}
+
+
+- (void)appendToCalculation:(NSString*) text {
+    [inputStrip setText:[[inputStrip text] stringByAppendingString:[NSString stringWithFormat:@"%@ ", text]]];
 }
 
 

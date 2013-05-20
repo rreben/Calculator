@@ -27,17 +27,17 @@ Assignment 1 (fall 2011)
   + pi enter 3 * (results 3*pi) (done)
   + pi 3 * (results 3*pi) (done)
   + pi enter 3 * + (should result in 4*pi, which might be unexpected) (done) 
-+ input strip on top of display
-  + user enters 6.52 5 + 2 * so this should be shown in the input strip
-+ C button
-  + clear input strip
++ input strip on top of display (done)
+  + user enters 6.52 5 + 2 * so this should be shown in the input strip (done)
++ C button (done)
+  + clear input strip (done)
   + clear operand stack (done)
   + clear state of UI (done)
-  + 5 7 C 5 should result in 5 being shown.
+  + 5 7 C 5 should result in 5 being shown. (done)
 + hanlde 1/0 gracefully
 + supplement any operation with 0 if there are not enough operands
 + Backspace to correct numbers which have been typed in. (done)
-+ Add = to the input strip to mark results of computations
++ Add = to the input strip to mark results of computations (done)
 + CHS
   + If user is in the middle of typing in a number then just change the sign of the string
   + If enter has been pressed then CHS should work as a unanry operator

@@ -13,6 +13,7 @@
     IBOutlet UILabel *display;
     IBOutlet UILabel *memoryDisplay;
     IBOutlet UILabel *trigonometryDisplay;
+    IBOutlet UILabel *inputStrip;
     CalculatorBrain * _brain;
 }
 
