@@ -18,14 +18,15 @@ Assignment 1 (fall 2011)
   + no leading 0 like 05.67 (done)
   + no leading . like .56 (should be 0.56) (done)
   + no non valid numbers like 4.123.9.78 (done)
-+ sin
-+ cos
-+ sqrt
++ sin (done)
++ cos (done)
++ sqrt (done)
++ 1/x (extra) (done)
 + pi as an operation 
-  + pi as an operation not just entering pi in the display
-  + pi enter 3 * (results 3*pi)
-  + pi 3 * (results 3*pi)
-  + pi enter 3 * + (should _not_ result in 4*pi)
+  + pi as an operation not just entering pi in the display (done)
+  + pi enter 3 * (results 3*pi) (done)
+  + pi 3 * (results 3*pi) (done)
+  + pi enter 3 * + (should result in 4*pi, which might be unexpected) (done) 
 + input strip on top of display
   + user enters 6.52 5 + 2 * so this should be shown in the input strip
 + C button

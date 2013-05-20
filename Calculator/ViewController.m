@@ -137,7 +137,7 @@ static NSString *CalculatorTrigonometryContext = @"com.convincingapps.calculator
     NSString * operation = [[sender titleLabel] text];
     double result = [[self brain] performOperation:operation];
     [display setText:[NSString stringWithFormat:@"%g",result]];
-    [self pushOperandToBrain];
+//    [self pushOperandToBrain];
 }
 
 - (IBAction)commandPressed:(UIButton *)sender{
@@ -160,13 +160,13 @@ static NSString *CalculatorTrigonometryContext = @"com.convincingapps.calculator
         [display setText:[NSString stringWithFormat:@"%g", self.brain.memoryValue.doubleValue]];
         [self pushOperandToBrain];
         self.brain.memoryValue = [NSNumber numberWithDouble:[[display text]doubleValue]];
-    }else if ([@"PI" isEqualToString:command]){
-        // [brain returnPi] does not work when brain is not inititialized
-        // in this case you would have to press pi for two times
-        // [[self brain] returnPi] provides the necessary two calls in case of
-        // late instantiation. It is better to initialize brain in the setup.
-        [display setText:[NSString stringWithFormat:@"%g", [[self brain] returnPi]]];
-        [self pushOperandToBrain];
+//    }else if ([@"PI" isEqualToString:command]){
+//        // [brain returnPi] does not work when brain is not inititialized
+//        // in this case you would have to press pi for two times
+//        // [[self brain] returnPi] provides the necessary two calls in case of
+//        // late instantiation. It is better to initialize brain in the setup.
+//        [display setText:[NSString stringWithFormat:@"%g", [[self brain] returnPi]]];
+//        [self pushOperandToBrain];
     }else if ([@"MC" isEqualToString:command]){
         self.brain.memoryValue = nil;
     }else if ([@"BS" isEqualToString:command]){

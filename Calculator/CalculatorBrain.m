@@ -67,6 +67,8 @@
         {
                 result = [self popOperand] / operand;
         }
+    } else if([operation isEqualToString:@"PI"]){
+        result = (double)M_PI;;
     } else if([operation isEqualToString:@"sqrt"]){
         // thus this is a single operator operation, execute immidiately
         result = sqrt([self popOperand]);
@@ -76,19 +78,15 @@
         result = 1/[self popOperand];
     }else if([operation isEqualToString:@"sin"]){
         double argument = [self popOperand];
-        if (self.isCalculatingDegreesToRadians) argument = argument * 2 * [self returnPi] / 360.0;
+        if (self.isCalculatingDegreesToRadians) argument = argument * 2 * (double)M_PI / 360.0;
         result = sin(argument);
     }else if([operation isEqualToString:@"cos"]){
         double argument = [self popOperand];
-        if (self.isCalculatingDegreesToRadians) argument = argument * 2 * [self returnPi] / 360.0;
+        if (self.isCalculatingDegreesToRadians) argument = argument * 2 * (double)M_PI / 360.0;
         result = cos(argument);
     }
     [self pushOperand:result];
     return result;
-}
-
--(double)returnPi{
-    return (double)M_PI;
 }
 
 -(void)performWaitingOperation{

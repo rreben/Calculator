@@ -19,6 +19,5 @@
 -(void)pushOperand:(double)aDouble;
 -(double)performOperation:(NSString*)operation;
 -(void)performClearCommand;
--(double)returnPi;
 
 @end
