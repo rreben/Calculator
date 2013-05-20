@@ -67,32 +67,22 @@
         {
                 result = [self popOperand] / operand;
         }
+    } else if([operation isEqualToString:@"sqrt"]){
+        // thus this is a single operator operation, execute immidiately
+        result = sqrt([self popOperand]);
+    }else if([operation isEqualToString:@"CHS"]){
+        result = - operand;
+    }else if([operation isEqualToString:@"1/x"]){
+        result = 1/[self popOperand];
+    }else if([operation isEqualToString:@"sin"]){
+        double argument = [self popOperand];
+        if (self.isCalculatingDegreesToRadians) argument = argument * 2 * [self returnPi] / 360.0;
+        result = sin(argument);
+    }else if([operation isEqualToString:@"cos"]){
+        double argument = [self popOperand];
+        if (self.isCalculatingDegreesToRadians) argument = argument * 2 * [self returnPi] / 360.0;
+        result = cos(argument);
     }
-    
-
-    
-//    if([operation isEqualToString:@"sqrt"]){
-//        // thus this is a single operator operation, execute immidiately
-//        operand = sqrt(operand);
-//    }else if([operation isEqualToString:@"CHS"]){
-//        operand = - operand;
-//    }else if([operation isEqualToString:@"1/x"]){
-//        operand = 1/operand;
-//    }else if([operation isEqualToString:@"sin"]){
-//        if (self.isCalculatingDegreesToRadians) operand = operand * 2 * [self returnPi] / 360.0;
-//        operand = sin(operand);
-//    }else if([operation isEqualToString:@"cos"]){
-//        if (self.isCalculatingDegreesToRadians) operand = operand * 2 * [self returnPi] / 360.0;
-//        operand = cos(operand);
-//    }else{
-//        // thus this is a double operator operation, do not execute immidiately
-//        // suppose user presses 12 + 4 sqrt = result should be 14.
-//        // so wait for execution till user presses another double operation (+ - *,...)
-//        // or =. In the former case execute waiting operation and send actual operation to waiting
-//        [self performWaitingOperation];
-//        waitingOperand = operand;
-//        waitingOperation = operation;
-//    }
     [self pushOperand:result];
     return result;
 }
