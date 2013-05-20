@@ -119,9 +119,7 @@
 }
 
 -(void)performClearCommand{
-    waitingOperand = 0;
-    waitingOperation = nil;
-    [self pushOperand:0.0];
+    [self.operandStack removeAllObjects];
 }
 
 
