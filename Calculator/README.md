@@ -38,7 +38,7 @@ Assignment 1 (fall 2011)
 + supplement any operation with 0 if there are not enough operands
 + Backspace to correct numbers which have been typed in. (done)
 + Add = to the input strip to mark results of computations (done)
-+ CHS
++ CHS (will not be done)
   + If user is in the middle of typing in a number then just change the sign of the string
   + If enter has been pressed then CHS should work as a unanry operator
 * Hint: NSString *greeting = @"Hello There Joe, how are ya?";

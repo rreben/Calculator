@@ -89,23 +89,6 @@
     return result;
 }
 
--(void)performWaitingOperation{
-    if([@"+" isEqual:waitingOperation]){
-        operand = waitingOperand + operand;
-    }
-    else if([@"-" isEqual:waitingOperation]){
-        operand = waitingOperand - operand;
-    }
-    else if([@"x" isEqual:waitingOperation]){
-        operand = waitingOperand * operand;
-    }
-    else if([@"/" isEqual:waitingOperation]){
-        if(operand){
-            operand = waitingOperand / operand;
-        }
-    }
-}
-
 -(void)performClearCommand{
     [self.operandStack removeAllObjects];
 }
