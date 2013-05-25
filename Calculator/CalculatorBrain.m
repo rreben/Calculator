@@ -33,6 +33,13 @@
     return self;
 }
 
++ (NSSet *)variablesUsedInProgram:(id)program{
+    return nil;
+}
+
+-(NSString *)descriptionOfProgram{
+    return [[self class] descriptionOfProgram:[self program]];
+}
 
 + (NSString *)descriptionOfProgram:(id)program
 {
@@ -46,11 +53,11 @@
 - (double)performOperation:(NSString *)operation
 {
     [self.programStack addObject:operation];
-    return [[self class] runProgram:self.program usingCalculation:self.isCalculatingDegreesToRadians];
+    return [[self class] runProgram:self.program usingCalculation:self.isCalculatingDegreesToRadians usingVariableValues:nil];
 }
 
 
-+ (double)runProgram:(id)program usingCalculation: (BOOL)degreesToRadians
++ (double)runProgram:(id)program usingCalculation: (BOOL)degreesToRadians  usingVariableValues:(NSDictionary *)variableValues
 {
     NSMutableArray *stack;
     if ([program isKindOfClass:[NSArray class]]) {

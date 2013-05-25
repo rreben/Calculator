@@ -14,6 +14,7 @@
     IBOutlet UILabel *memoryDisplay;
     IBOutlet UILabel *trigonometryDisplay;
     IBOutlet UILabel *inputStrip;
+    IBOutlet UILabel *inFixDescriptionOfProgram;
     CalculatorBrain * _brain;
 }
 
