@@ -9,14 +9,16 @@
 #import <Foundation/Foundation.h>
 
 @interface CalculatorBrain : NSObject{
-    double operand;
 }
 
 @property (nonatomic, strong) NSNumber * memoryValue;
-//@property (nonatomic) BOOL calculatingDegreesToRadians;
 @property (nonatomic, getter = isCalculatingDegreesToRadians) BOOL calculatingDegreesToRadians;
+@property (nonatomic, readonly) id program;
 
--(void)pushOperand:(double)aDouble;
++ (NSString *)descriptionOfProgram:(id)program;
++ (double)runProgram:(id)program usingCalculation: (BOOL)degreesToRadians;
+
+-(void)pushOperand:(double)operand;
 -(double)performOperation:(NSString*)operation;
 -(void)performClearCommand;
 

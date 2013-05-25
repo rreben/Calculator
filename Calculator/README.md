@@ -47,7 +47,7 @@ Assignment 1 (fall 2011)
        
 
 Assignment 2 (fall 2011)
-+ Merge Calculatorbrain with runProgram
++ Merge Calculatorbrain with runProgram (done)
 + implement interface
   !   @property (readonly) id program;
   !   + (double)runProgram:(id)program;

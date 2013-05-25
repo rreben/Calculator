@@ -9,10 +9,8 @@
 #import "CalculatorBrain.h"
 
 @interface CalculatorBrain(){
-    NSString * waitingOperation;
-    double waitingOperand;
 }
-@property (nonatomic, strong) NSMutableArray *operandStack;
+@property (nonatomic, strong) NSMutableArray *programStack;
 
 @end
 
@@ -20,7 +18,7 @@
 
 @implementation CalculatorBrain
 
-@synthesize operandStack = _operandStack;
+@synthesize programStack = _programStack;
 @synthesize memoryValue = _memoryValue;
 @synthesize calculatingDegreesToRadians;
 
@@ -31,67 +29,96 @@
 -(id) init
 {
     self = [super init];
-    _operandStack = [[NSMutableArray alloc]init];
+    _programStack = [[NSMutableArray alloc]init];
     return self;
 }
 
--(void)pushOperand:(double)aDouble
+
++ (NSString *)descriptionOfProgram:(id)program
 {
-    [self.operandStack addObject:[NSNumber numberWithDouble:aDouble]];
-    operand = aDouble;
+    return @"Implement this in Homework #2";
+}
+- (void)pushOperand:(double)operand
+{
+    [self.programStack addObject:[NSNumber numberWithDouble:operand]];
 }
 
--(double)popOperand
+- (double)performOperation:(NSString *)operation
 {
-    NSNumber * nextOperand = [self.operandStack lastObject];
-    if (nextOperand)[self.operandStack removeLastObject];
-    return [nextOperand doubleValue];
+    [self.programStack addObject:operation];
+    return [[self class] runProgram:self.program usingCalculation:self.isCalculatingDegreesToRadians];
 }
 
--(double)performOperation:(NSString*)operation{
+
++ (double)runProgram:(id)program usingCalculation: (BOOL)degreesToRadians
+{
+    NSMutableArray *stack;
+    if ([program isKindOfClass:[NSArray class]]) {
+        stack = [program mutableCopy];
+    }
+    return [self popOperandOffProgramStack:stack usingCalculation:degreesToRadians];
+}
+
+
++(double)popOperandOffProgramStack:(NSMutableArray *)stack usingCalculation:(BOOL)degreesToRadians{
     double result = 0;
     
-    if([@"+" isEqual:operation])
+    
+    id topOfStack = [stack lastObject];
+    if (topOfStack) [stack removeLastObject];
+    
+    if ([topOfStack isKindOfClass:[NSNumber class]])
     {
-        result = [self popOperand] + [self popOperand];
-        
-    }else if([@"-" isEqual:operation]){
-        double subtrahend = [self popOperand];
-        result = [self popOperand] - subtrahend;
-    }else if([@"x" isEqual:operation])
-    {
-        result = [self popOperand] * [self popOperand];
-    }else if([@"/" isEqual:operation]){
-        double divisor = [self popOperand];
-        if(divisor)
-        {
-                result = [self popOperand] / operand;
-        }
-    } else if([operation isEqualToString:@"PI"]){
-        result = (double)M_PI;;
-    } else if([operation isEqualToString:@"sqrt"]){
-        // thus this is a single operator operation, execute immidiately
-        result = sqrt([self popOperand]);
-    }else if([operation isEqualToString:@"CHS"]){
-        result = - operand;
-    }else if([operation isEqualToString:@"1/x"]){
-        result = 1/[self popOperand];
-    }else if([operation isEqualToString:@"sin"]){
-        double argument = [self popOperand];
-        if (self.isCalculatingDegreesToRadians) argument = argument * 2 * (double)M_PI / 360.0;
-        result = sin(argument);
-    }else if([operation isEqualToString:@"cos"]){
-        double argument = [self popOperand];
-        if (self.isCalculatingDegreesToRadians) argument = argument * 2 * (double)M_PI / 360.0;
-        result = cos(argument);
+        result = [topOfStack doubleValue];
     }
-    [self pushOperand:result];
+    else if ([topOfStack isKindOfClass:[NSString class]])
+    {
+        NSString *operation = topOfStack;
+        if([@"+" isEqual:operation])
+        {
+            result = [self popOperandOffProgramStack:stack usingCalculation:degreesToRadians] + [self popOperandOffProgramStack:stack usingCalculation:degreesToRadians];
+        }else if([@"-" isEqual:operation]){
+            double subtrahend = [self popOperandOffProgramStack:stack usingCalculation:degreesToRadians];
+            result = [self popOperandOffProgramStack:stack usingCalculation:degreesToRadians] - subtrahend;
+        }else if([@"x" isEqual:operation])
+        {
+            result = [self popOperandOffProgramStack:stack usingCalculation:degreesToRadians] * [self popOperandOffProgramStack:stack usingCalculation:degreesToRadians];
+        }else if([@"/" isEqual:operation]){
+            double divisor = [self popOperandOffProgramStack:stack usingCalculation:degreesToRadians];
+            if(divisor)
+            {
+                result = [self popOperandOffProgramStack:stack usingCalculation:degreesToRadians] / divisor;
+            }
+        } else if([operation isEqualToString:@"PI"]){
+        result = (double)M_PI;;
+        } else if([operation isEqualToString:@"sqrt"]){
+            // thus this is a single operator operation, execute immidiately
+            result = sqrt([self popOperandOffProgramStack:stack usingCalculation:degreesToRadians]);
+        }else if([operation isEqualToString:@"CHS"]){
+            result = - [self popOperandOffProgramStack:stack usingCalculation:degreesToRadians];
+        }else if([operation isEqualToString:@"1/x"]){
+            result = 1/[self popOperandOffProgramStack:stack usingCalculation:degreesToRadians];
+        }else if([operation isEqualToString:@"sin"]){
+            double argument = [self popOperandOffProgramStack:stack usingCalculation:degreesToRadians];
+            if (degreesToRadians) argument = argument * 2 * (double)M_PI / 360.0;
+            result = sin(argument);
+        }else if([operation isEqualToString:@"cos"]){
+            double argument = [self popOperandOffProgramStack:stack usingCalculation:degreesToRadians];
+            if (degreesToRadians) argument = argument * 2 * (double)M_PI / 360.0;
+            result = cos(argument);
+        }
+    }
     return result;
 }
 
 -(void)performClearCommand{
-    [self.operandStack removeAllObjects];
+    [self.programStack removeAllObjects];
 }
 
+- (id)program
+{
+    // copy returns immutable array
+    return [self.programStack copy];
+}
 
 @end
