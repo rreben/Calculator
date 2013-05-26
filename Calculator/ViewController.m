@@ -152,6 +152,7 @@ static NSString *CalculatorTrigonometryContext = @"com.convincingapps.calculator
         [self resetEditingMode];
         [display setText:[NSString stringWithFormat:@"%g",0.0]];
         [inputStrip setText:@""];
+        [inFixDescriptionOfProgram setText:@""];
     }else if ([@"RUN" isEqualToString:command]){
         [inFixDescriptionOfProgram setText:[self.brain descriptionOfProgram]];
     }else if ([@"STO" isEqualToString:command]){
