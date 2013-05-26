@@ -43,8 +43,61 @@
 
 + (NSString *)descriptionOfProgram:(id)program
 {
-    return @"Implement this in Homework #2";
+    
+    NSMutableArray *stack;
+    if ([program isKindOfClass:[NSArray class]]) {
+        stack = [program mutableCopy];
+    }
+    
+    return [[self class] popRHSItemOffStack:stack];
 }
+
+
++(NSString *)popRHSItemOffStack: (NSMutableArray *)stack{
+    NSString * result = @"";
+
+    id topOfStack = [stack lastObject];
+    if (topOfStack) [stack removeLastObject];
+    
+    if ([topOfStack isKindOfClass:[NSNumber class]])
+    {
+        result = [(NSNumber*)topOfStack stringValue];
+    }
+    else if ([topOfStack isKindOfClass:[NSString class]])
+    {
+        NSString *operation = topOfStack;
+        if([@"+" isEqual:operation])
+        {
+            result = [result stringByAppendingFormat:@"%@ %@ %@",[self popRHSItemOffStack:stack],@"+",[self popRHSItemOffStack:stack]];
+        }else if([@"-" isEqual:operation]){
+            NSString * subtrahend = [self popRHSItemOffStack:stack];
+            result = [result stringByAppendingFormat:@"%@ %@ %@",[self popRHSItemOffStack:stack],@"-",subtrahend];
+        }else if([@"x" isEqual:operation])
+        {
+            result = [result stringByAppendingFormat:@"%@ %@ %@",[self popRHSItemOffStack:stack],@"*",[self popRHSItemOffStack:stack]];
+        }else if([@"/" isEqual:operation]){
+            NSString * divisor = [self popRHSItemOffStack:stack];
+                result = [result stringByAppendingFormat:@"%@ %@ %@",[self popRHSItemOffStack:stack],@"/",divisor];
+        } else if([operation isEqualToString:@"PI"]){
+            result = [result stringByAppendingFormat:@"%g",(double)M_PI];
+        } else if([operation isEqualToString:@"sqrt"]){
+            // thus this is a single operator operation, execute immidiately
+            result = [result stringByAppendingFormat:@"%@ %@ %@",@"sqrt(",[self popRHSItemOffStack:stack],@")"];
+        }else if([operation isEqualToString:@"CHS"]){
+            result = [result stringByAppendingFormat:@"%@ %@ %@",@"-(",[self popRHSItemOffStack:stack],@")"];
+        }else if([operation isEqualToString:@"1/x"]){
+            result = [result stringByAppendingFormat:@"%@ %@ %@",@"1/(",[self popRHSItemOffStack:stack],@")"];
+        }else if([operation isEqualToString:@"sin"]){
+            result = [result stringByAppendingFormat:@"%@ %@ %@",@"sin(",[self popRHSItemOffStack:stack],@")"];
+        }else if([operation isEqualToString:@"cos"]){
+            result = [result stringByAppendingFormat:@"%@ %@ %@",@"cos(",[self popRHSItemOffStack:stack],@")"];
+        }
+    }
+
+    
+    return result;
+}
+
 - (void)pushOperand:(double)operand
 {
     [self.programStack addObject:[NSNumber numberWithDouble:operand]];
