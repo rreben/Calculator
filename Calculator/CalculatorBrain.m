@@ -43,13 +43,21 @@
 
 + (NSString *)descriptionOfProgram:(id)program
 {
-    
+    NSString * result = @"";
     NSMutableArray *stack;
     if ([program isKindOfClass:[NSArray class]]) {
         stack = [program mutableCopy];
     }
-    
-    return [[self class] popRHSItemOffStack:stack];
+    if (stack)
+    {
+        // first operation / operand without leading comma
+        result = [result stringByAppendingFormat:@"%@",[[self class] popRHSItemOffStack:stack]];
+        while ([stack count] > 0) {
+            // all further operations / operands appended with a leading comma.
+            result = [result stringByAppendingFormat:@", %@",[[self class] popRHSItemOffStack:stack]];
+        }
+    }
+    return result;
 }
 
 
