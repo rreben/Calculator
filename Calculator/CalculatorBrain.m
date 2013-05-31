@@ -60,13 +60,17 @@
     return [[self class] getRidOfSuperfluousOuterBrackets:result];
 }
 +(NSString *)getRidOfSuperfluousOuterBrackets: (NSString*) inputString{
-    if ([inputString characterAtIndex:0] == '('
-        &&
-        [inputString characterAtIndex:[inputString length]-1] == ')'){
-        NSRange aRange;
-        aRange.length = [inputString length]-2;
-        aRange.location = 1;
-        return [inputString substringWithRange:(NSRange)aRange];
+    if (inputString){
+        if (![inputString isEqualToString:@""]){
+            if ([inputString characterAtIndex:0] == '('
+                &&
+                [inputString characterAtIndex:[inputString length]-1] == ')'){
+                NSRange aRange;
+                aRange.length = [inputString length]-2;
+                aRange.location = 1;
+                return [inputString substringWithRange:(NSRange)aRange];
+            }
+        }
     }
     return inputString;
 }

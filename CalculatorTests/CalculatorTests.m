@@ -76,6 +76,36 @@
     STAssertTrue([@"sqrt(3 - 5 * (6 + 7))" isEqualToString:[brain descriptionOfProgram]], @"sqrt(3 - 5 * (6 + 7))");
 }
 
+- (void)testConcatenationForUnaryOperators
+{
+    //3 sqrt sqrt should display as sqrt(sqrt(3))
+    CalculatorBrain * brain;
+    brain = [[CalculatorBrain alloc] init];
+    [brain pushOperand:3.0];
+    [brain performOperation:@"sqrt"];
+    [brain performOperation:@"sqrt"];
+    STAssertTrue([@"sqrt(sqrt(3))" isEqualToString:[brain descriptionOfProgram]], @"sqrt(sqrt(3))");
+}
+
+- (void)testBracketsForUnaryOperatorsAndAddition
+{
+    // 3 E 5 sqrt + should display as 3 + sqrt(5)
+    CalculatorBrain * brain;
+    brain = [[CalculatorBrain alloc] init];
+    [brain pushOperand:3.0];
+    [brain pushOperand:5.0];
+    [brain performOperation:@"sqrt"];
+    [brain performOperation:@"+"];
+    STAssertTrue([@"3 + sqrt(5)" isEqualToString:[brain descriptionOfProgram]], @"3 + sqrt(5)");
+}
+
+//+ π r r * * should display as π * (r * r) or, even better, π * r * r
+//+ a a * b b * + sqrt would be, at best, sqrt(a * a + b * b)
+//+ 3 E 5 + 6 * is not 3 + 5 * 6, it is (3 + 5) * 6
+//+ Separate multiple things on stack with commas
+//+ 3 E 5 E as 5, 3
+//+ 3 E 5 + 6 E 7 * 9 sqrt would be “sqrt(9), 6 * 7, 3 + 5”
+
 
 - (void)testThatMakesSureWeDontFinishTooFast
 {
