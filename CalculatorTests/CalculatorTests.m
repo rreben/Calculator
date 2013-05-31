@@ -24,17 +24,41 @@
     [super tearDown];
 }
 
-- (void)testExample
+- (void)testAddition
 {
-    CalculatorBrain * _brain;
+    CalculatorBrain * brain;
 
-    _brain = [[CalculatorBrain alloc] init];
-    [_brain pushOperand:1.0];
-    [_brain pushOperand:1.0];
-    STAssertTrue([_brain performOperation:@"+"] == 2.0, @"simple addition");
+    brain = [[CalculatorBrain alloc] init];
+    [brain pushOperand:1.0];
+    [brain pushOperand:1.0];
+    STAssertTrue([brain performOperation:@"+"] == 2.0, @"simple addition");
     
-//    STFail(@"Unit tests are not implemented yet in CalculatorTests");
 }
+
+- (void)testDescriptionMultiplyAndAdd
+{
+    //+ 3 E 5 E 6 E 7 + * - should display as 3 - (5 * (6 + 7)) or 3 - 5 * (6 + 7)
+    CalculatorBrain * brain;
+    brain = [[CalculatorBrain alloc] init];
+    [brain pushOperand:3.0];
+    [brain pushOperand:5.0];
+    [brain pushOperand:6.0];
+    [brain pushOperand:7.0];
+    STAssertTrue([brain performOperation:@"+"] == 13.0, @"simple addition");
+    STAssertTrue([brain performOperation:@"x"] == 65.0, @"simple addition");
+    STAssertTrue([brain performOperation:@"-"] == -62.0, @"simple addition");
+    NSLog(@"%@",[brain descriptionOfProgram]);
+}
+
+
+-(void)testGetRidOfSuperfluousOuterBrackets
+{
+    CalculatorBrain * brain;
+    brain = [[CalculatorBrain alloc] init];
+    STAssertTrue([@"3+5+6" isEqualToString:[[brain class] getRidOfSuperfluousOuterBrackets:@"(3+5+6)"]],@"clean strin");
+    
+}
+
 
 - (void)testThatMakesSureWeDontFinishTooFast
 {

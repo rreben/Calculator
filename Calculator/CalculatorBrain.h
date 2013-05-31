@@ -18,6 +18,8 @@
 + (NSString *)descriptionOfProgram:(id)program;
 + (double)runProgram:(id)program usingCalculation: (BOOL)degreesToRadians usingVariableValues:(NSDictionary *)variableValues;
 + (NSSet *)variablesUsedInProgram:(id)program;
++(NSString *)getRidOfSuperfluousOuterBrackets: (NSString*) inputString;
+
 
 -(void)pushOperand:(double)operand;
 -(double)performOperation:(NSString*)operation;

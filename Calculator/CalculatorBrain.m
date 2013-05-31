@@ -59,7 +59,17 @@
     }
     return result;
 }
-
++(NSString *)getRidOfSuperfluousOuterBrackets: (NSString*) inputString{
+    if ([inputString characterAtIndex:0] == '('
+        ||
+        [inputString characterAtIndex:[inputString length]-1] == ')'){
+        NSRange aRange;
+        aRange.length = [inputString length]-2;
+        aRange.location = 1;
+        return [inputString substringWithRange:(NSRange)aRange];
+    }
+    return @"hi";
+}
 
 +(NSString *)popRHSItemOffStack: (NSMutableArray *)stack{
     NSString * result = @"";
@@ -76,13 +86,16 @@
         NSString *operation = topOfStack;
         if([@"+" isEqual:operation])
         {
-            result = [result stringByAppendingFormat:@"%@ %@ %@",[self popRHSItemOffStack:stack],@"+",[self popRHSItemOffStack:stack]];
+            // get order right. Important even for symmetric operators to have a description that can be understood easily
+            NSString * secondOperand = [self popRHSItemOffStack:stack];
+            result = [result stringByAppendingFormat:@"(%@ %@ %@)",[self popRHSItemOffStack:stack],@"+",secondOperand];
         }else if([@"-" isEqual:operation]){
             NSString * subtrahend = [self popRHSItemOffStack:stack];
-            result = [result stringByAppendingFormat:@"%@ %@ %@",[self popRHSItemOffStack:stack],@"-",subtrahend];
+            result = [result stringByAppendingFormat:@"(%@ %@ %@)",[self popRHSItemOffStack:stack],@"-",subtrahend];
         }else if([@"x" isEqual:operation])
         {
-            result = [result stringByAppendingFormat:@"%@ %@ %@",[self popRHSItemOffStack:stack],@"*",[self popRHSItemOffStack:stack]];
+            NSString * secondOperand = [self popRHSItemOffStack:stack];
+            result = [result stringByAppendingFormat:@"%@ %@ %@",[self popRHSItemOffStack:stack],@"*",secondOperand];
         }else if([@"/" isEqual:operation]){
             NSString * divisor = [self popRHSItemOffStack:stack];
                 result = [result stringByAppendingFormat:@"%@ %@ %@",[self popRHSItemOffStack:stack],@"/",divisor];
