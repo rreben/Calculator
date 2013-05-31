@@ -47,7 +47,7 @@
     STAssertTrue([brain performOperation:@"+"] == 13.0, @"simple addition");
     STAssertTrue([brain performOperation:@"x"] == 65.0, @"simple addition");
     STAssertTrue([brain performOperation:@"-"] == -62.0, @"simple addition");
-    NSLog(@"%@",[brain descriptionOfProgram]);
+    STAssertTrue([@"3 - 5 * (6 + 7)" isEqualToString:[brain descriptionOfProgram]], @"3 - 5 * (6 + 7)");
 }
 
 
@@ -57,6 +57,23 @@
     brain = [[CalculatorBrain alloc] init];
     STAssertTrue([@"3+5+6" isEqualToString:[[brain class] getRidOfSuperfluousOuterBrackets:@"(3+5+6)"]],@"clean strin");
     
+}
+
+- (void)testBracketsForUnaryOperators
+{
+    //+ 3 E 5 E 6 E 7 + * - sqrt should display as sqrt(3 - 5 * (6 + 7))
+    CalculatorBrain * brain;
+    brain = [[CalculatorBrain alloc] init];
+    [brain pushOperand:3.0];
+    [brain pushOperand:5.0];
+    [brain pushOperand:6.0];
+    [brain pushOperand:7.0];
+    STAssertTrue([brain performOperation:@"+"] == 13.0, @"simple addition");
+    STAssertTrue([brain performOperation:@"x"] == 65.0, @"simple addition");
+    STAssertTrue([brain performOperation:@"-"] == -62.0, @"simple addition");
+    [brain performOperation:@"sqrt"];
+    NSLog(@"%@",[brain descriptionOfProgram]);
+    STAssertTrue([@"sqrt(3 - 5 * (6 + 7))" isEqualToString:[brain descriptionOfProgram]], @"sqrt(3 - 5 * (6 + 7))");
 }
 
 

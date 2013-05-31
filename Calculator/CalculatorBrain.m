@@ -57,18 +57,18 @@
             result = [result stringByAppendingFormat:@", %@",[[self class] popRHSItemOffStack:stack]];
         }
     }
-    return result;
+    return [[self class] getRidOfSuperfluousOuterBrackets:result];
 }
 +(NSString *)getRidOfSuperfluousOuterBrackets: (NSString*) inputString{
     if ([inputString characterAtIndex:0] == '('
-        ||
+        &&
         [inputString characterAtIndex:[inputString length]-1] == ')'){
         NSRange aRange;
         aRange.length = [inputString length]-2;
         aRange.location = 1;
         return [inputString substringWithRange:(NSRange)aRange];
     }
-    return @"hi";
+    return inputString;
 }
 
 +(NSString *)popRHSItemOffStack: (NSMutableArray *)stack{
@@ -87,11 +87,11 @@
         if([@"+" isEqual:operation])
         {
             // get order right. Important even for symmetric operators to have a description that can be understood easily
-            NSString * secondOperand = [self popRHSItemOffStack:stack];
-            result = [result stringByAppendingFormat:@"(%@ %@ %@)",[self popRHSItemOffStack:stack],@"+",secondOperand];
+            NSString * secondOperand = [[self class] getRidOfSuperfluousOuterBrackets:[self popRHSItemOffStack:stack]];
+            result = [result stringByAppendingFormat:@"(%@ %@ %@)",[[self class] getRidOfSuperfluousOuterBrackets:[self popRHSItemOffStack:stack]],@"+",secondOperand];
         }else if([@"-" isEqual:operation]){
             NSString * subtrahend = [self popRHSItemOffStack:stack];
-            result = [result stringByAppendingFormat:@"(%@ %@ %@)",[self popRHSItemOffStack:stack],@"-",subtrahend];
+            result = [result stringByAppendingFormat:@"(%@ %@ %@)",[[self class] getRidOfSuperfluousOuterBrackets:[self popRHSItemOffStack:stack]],@"-",subtrahend];
         }else if([@"x" isEqual:operation])
         {
             NSString * secondOperand = [self popRHSItemOffStack:stack];
@@ -103,15 +103,15 @@
             result = [result stringByAppendingFormat:@"%g",(double)M_PI];
         } else if([operation isEqualToString:@"sqrt"]){
             // thus this is a single operator operation, execute immidiately
-            result = [result stringByAppendingFormat:@"%@ %@ %@",@"sqrt(",[self popRHSItemOffStack:stack],@")"];
+            result = [result stringByAppendingFormat:@"%@%@%@",@"sqrt(",[[self class] getRidOfSuperfluousOuterBrackets:[self popRHSItemOffStack:stack]],@")"];
         }else if([operation isEqualToString:@"CHS"]){
-            result = [result stringByAppendingFormat:@"%@ %@ %@",@"-(",[self popRHSItemOffStack:stack],@")"];
+            result = [result stringByAppendingFormat:@"%@%@%@",@"-(",[[self class] getRidOfSuperfluousOuterBrackets:[self popRHSItemOffStack:stack]],@")"];
         }else if([operation isEqualToString:@"1/x"]){
-            result = [result stringByAppendingFormat:@"%@ %@ %@",@"1/(",[self popRHSItemOffStack:stack],@")"];
+            result = [result stringByAppendingFormat:@"%@%@%@",@"1/(",[[self class] getRidOfSuperfluousOuterBrackets:[self popRHSItemOffStack:stack]],@")"];
         }else if([operation isEqualToString:@"sin"]){
-            result = [result stringByAppendingFormat:@"%@ %@ %@",@"sin(",[self popRHSItemOffStack:stack],@")"];
+            result = [result stringByAppendingFormat:@"%@%@%@",@"sin(",[[self class] getRidOfSuperfluousOuterBrackets:[self popRHSItemOffStack:stack]],@")"];
         }else if([operation isEqualToString:@"cos"]){
-            result = [result stringByAppendingFormat:@"%@ %@ %@",@"cos(",[self popRHSItemOffStack:stack],@")"];
+            result = [result stringByAppendingFormat:@"%@%@%@",@"cos(",[[self class] getRidOfSuperfluousOuterBrackets:[self popRHSItemOffStack:stack]],@")"];
         }
     }
 
