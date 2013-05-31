@@ -48,7 +48,7 @@ Assignment 1 (fall 2011)
 
 Assignment 2 (fall 2011)
 + Merge Calculatorbrain with runProgram (done)
-+ implement interface
++ implement interface (done, however added parameter to control degrees vs radians for calculation)
   !   @property (readonly) id program;
   !   + (double)runProgram:(id)program;
   !   + (NSString *)descriptionOfProgram:(id)program;
