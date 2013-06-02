@@ -30,8 +30,8 @@
 
     brain = [[CalculatorBrain alloc] init];
     [brain pushOperand:1.0];
-    [brain pushOperand:1.0];
-    STAssertTrue([brain performOperation:@"+"] == 2.0, @"simple addition");
+    [brain pushOperand:1.0]; 
+    STAssertTrue([brain performOperation:@"+" usingVariableValues:nil] == 2.0, @"simple addition");
     
 }
 
@@ -44,9 +44,9 @@
     [brain pushOperand:5.0];
     [brain pushOperand:6.0];
     [brain pushOperand:7.0];
-    STAssertTrue([brain performOperation:@"+"] == 13.0, @"simple addition");
-    STAssertTrue([brain performOperation:@"x"] == 65.0, @"simple addition");
-    STAssertTrue([brain performOperation:@"-"] == -62.0, @"simple addition");
+    STAssertTrue([brain performOperation:@"+" usingVariableValues:nil] == 13.0, @"simple addition");
+    STAssertTrue([brain performOperation:@"x" usingVariableValues:nil] == 65.0, @"simple addition");
+    STAssertTrue([brain performOperation:@"-" usingVariableValues:nil] == -62.0, @"simple addition");
     STAssertTrue([@"3 - 5 * (6 + 7)" isEqualToString:[brain descriptionOfProgram]], @"3 - 5 * (6 + 7)");
 }
 
@@ -68,10 +68,10 @@
     [brain pushOperand:5.0];
     [brain pushOperand:6.0];
     [brain pushOperand:7.0];
-    STAssertTrue([brain performOperation:@"+"] == 13.0, @"simple addition");
-    STAssertTrue([brain performOperation:@"x"] == 65.0, @"simple addition");
-    STAssertTrue([brain performOperation:@"-"] == -62.0, @"simple addition");
-    [brain performOperation:@"sqrt"];
+    STAssertTrue([brain performOperation:@"+" usingVariableValues:nil] == 13.0, @"simple addition");
+    STAssertTrue([brain performOperation:@"x" usingVariableValues:nil] == 65.0, @"simple addition");
+    STAssertTrue([brain performOperation:@"-" usingVariableValues:nil] == -62.0, @"simple addition");
+    [brain performOperation:@"sqrt" usingVariableValues:nil];
     NSLog(@"%@",[brain descriptionOfProgram]);
     STAssertTrue([@"sqrt(3 - 5 * (6 + 7))" isEqualToString:[brain descriptionOfProgram]], @"sqrt(3 - 5 * (6 + 7))");
 }
@@ -82,8 +82,8 @@
     CalculatorBrain * brain;
     brain = [[CalculatorBrain alloc] init];
     [brain pushOperand:3.0];
-    [brain performOperation:@"sqrt"];
-    [brain performOperation:@"sqrt"];
+    [brain performOperation:@"sqrt" usingVariableValues:nil];
+    [brain performOperation:@"sqrt" usingVariableValues:nil];
     STAssertTrue([@"sqrt(sqrt(3))" isEqualToString:[brain descriptionOfProgram]], @"sqrt(sqrt(3))");
 }
 
@@ -94,9 +94,24 @@
     brain = [[CalculatorBrain alloc] init];
     [brain pushOperand:3.0];
     [brain pushOperand:5.0];
-    [brain performOperation:@"sqrt"];
-    [brain performOperation:@"+"];
+    [brain performOperation:@"sqrt" usingVariableValues:nil];
+    [brain performOperation:@"+" usingVariableValues:nil];
     STAssertTrue([@"3 + sqrt(5)" isEqualToString:[brain descriptionOfProgram]], @"3 + sqrt(5)");
+}
+
+-(void)testUsingVariable
+{
+    CalculatorBrain * brain;
+    NSDictionary * variableValues =[NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:[NSNumber numberWithDouble:2.2],
+                                                                        [NSNumber numberWithDouble:3.3], nil]
+                                                               forKeys:[NSArray arrayWithObjects:@"r",@"foo",nil]];
+    brain = [[CalculatorBrain alloc] init];
+    STAssertTrue([[brain class] lookUpValueforVariable:@"r" InDictionary:variableValues]==2.2, @"r");
+    [brain pushOperand:3.0];
+    [brain pushVariable:@"r"];
+    NSLog(@"%g",[brain performOperation:@"+" usingVariableValues:nil]);
+    double result = [[brain class] runProgram:brain.program usingCalculation:NO usingVariableValues:variableValues];
+    STAssertTrue(result == 5.2, @"3+r=5.2");
 }
 
 //+ π r r * * should display as π * (r * r) or, even better, π * r * r

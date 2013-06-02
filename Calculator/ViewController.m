@@ -24,6 +24,7 @@ static NSString *CalculatorTrigonometryContext = @"com.convincingapps.calculator
 @implementation ViewController
 
 @synthesize brain = _brain;
+@synthesize testVariableValues = _testVariableValues;
 
 -(BOOL)shouldAutorotate {
     return YES;
@@ -131,6 +132,15 @@ static NSString *CalculatorTrigonometryContext = @"com.convincingapps.calculator
     [self resetEditingMode];
 }
 
+-(IBAction)variableEntered:(UIButton *)sender;
+{
+    if(userIsInTheMiddleOfTypingANumber){
+        [self pushOperandToBrain];
+    }
+    NSString * variable = [[sender titleLabel] text];
+    [self.brain pushVariable:variable];
+    [self appendToCalculation:variable];
+}
 
 -(IBAction)operationPressed:(UIButton *)sender{
     if(userIsInTheMiddleOfTypingANumber){
@@ -138,7 +148,7 @@ static NSString *CalculatorTrigonometryContext = @"com.convincingapps.calculator
     }
     NSString * operation = [[sender titleLabel] text];
     [self appendToCalculation:operation];
-    double result = [[self brain] performOperation:operation];
+    double result = [[self brain] performOperation:operation usingVariableValues:self.testVariableValues];
     [self appendToCalculation:@"="];
     [self appendToCalculation:[NSString stringWithFormat:@"%g",result]];
     [display setText:[NSString stringWithFormat:@"%g",result]];
@@ -227,6 +237,10 @@ static NSString *CalculatorTrigonometryContext = @"com.convincingapps.calculator
                selector:@selector(defaultsChanged:)
                    name:NSUserDefaultsDidChangeNotification
                  object:nil];
+    self.testVariableValues =[NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:[NSNumber numberWithDouble:2.2],
+                                                                        [NSNumber numberWithDouble:3.3], nil]
+                                                               forKeys:[NSArray arrayWithObjects:@"r",@"foo",nil]];
+
 	// Do any additional setup after loading the view, typically from a nib.
 }
 

@@ -52,12 +52,12 @@ Assignment 2 (fall 2011)
   !   @property (readonly) id program;
   !   + (double)runProgram:(id)program;
   !   + (NSString *)descriptionOfProgram:(id)program;
-+ variables as operands
++ variables as operands (done)
   !   + (double)runProgram:(id)program usingVariableValues:(NSDictionary *)variableValues;
   !   + (NSSet *)variablesUsedInProgram:(id)program;
-+ UILabel for descriptionOfProgram
-+ Add a few variable buttons
-+ update display by using runProgram:usingVariableValues: 
++ UILabel for descriptionOfProgram (done)
++ Add a few variable buttons (done)
++ update display by using runProgram:usingVariableValues: (done)
 + The variable values dictionary it passes to this method should be a property in your Controller (let’s call it “testVariableValues”).
   * The NSDictionary class method dictionaryWithObjectsAndKeys: is great for Required Task 3e.
 + Add a UILabel to your UI whose contents are determined by iterating through all the variablesUsedInProgram: and displaying each with its current value from testVariableValues. Example display: “x = 5 y = 4.8 foo = 0”.

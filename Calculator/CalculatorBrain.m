@@ -128,10 +128,16 @@
     [self.programStack addObject:[NSNumber numberWithDouble:operand]];
 }
 
-- (double)performOperation:(NSString *)operation
+-(void)pushVariable:(NSString *)variable
+{
+    [self.programStack addObject:variable];
+}
+
+
+- (double)performOperation:(NSString *)operation  usingVariableValues:(NSDictionary *)variableValues
 {
     [self.programStack addObject:operation];
-    return [[self class] runProgram:self.program usingCalculation:self.isCalculatingDegreesToRadians usingVariableValues:nil];
+    return [[self class] runProgram:self.program usingCalculation:self.isCalculatingDegreesToRadians usingVariableValues:variableValues];
 }
 
 
@@ -141,11 +147,11 @@
     if ([program isKindOfClass:[NSArray class]]) {
         stack = [program mutableCopy];
     }
-    return [self popOperandOffProgramStack:stack usingCalculation:degreesToRadians];
+    return [self popOperandOffProgramStack:stack usingCalculation:degreesToRadians usingVariableValues:variableValues];
 }
 
 
-+(double)popOperandOffProgramStack:(NSMutableArray *)stack usingCalculation:(BOOL)degreesToRadians{
++(double)popOperandOffProgramStack:(NSMutableArray *)stack usingCalculation:(BOOL)degreesToRadians usingVariableValues:(NSDictionary *)variableValues{
     double result = 0;
     
     
@@ -161,37 +167,52 @@
         NSString *operation = topOfStack;
         if([@"+" isEqual:operation])
         {
-            result = [self popOperandOffProgramStack:stack usingCalculation:degreesToRadians] + [self popOperandOffProgramStack:stack usingCalculation:degreesToRadians];
+            result = [self popOperandOffProgramStack:stack usingCalculation:degreesToRadians usingVariableValues:variableValues] + [self popOperandOffProgramStack:stack usingCalculation:degreesToRadians usingVariableValues:variableValues];
         }else if([@"-" isEqual:operation]){
-            double subtrahend = [self popOperandOffProgramStack:stack usingCalculation:degreesToRadians];
-            result = [self popOperandOffProgramStack:stack usingCalculation:degreesToRadians] - subtrahend;
+            double subtrahend = [self popOperandOffProgramStack:stack usingCalculation:degreesToRadians usingVariableValues:variableValues];
+            result = [self popOperandOffProgramStack:stack usingCalculation:degreesToRadians usingVariableValues:variableValues] - subtrahend;
         }else if([@"x" isEqual:operation])
         {
-            result = [self popOperandOffProgramStack:stack usingCalculation:degreesToRadians] * [self popOperandOffProgramStack:stack usingCalculation:degreesToRadians];
+            result = [self popOperandOffProgramStack:stack usingCalculation:degreesToRadians usingVariableValues:variableValues] * [self popOperandOffProgramStack:stack usingCalculation:degreesToRadians usingVariableValues:variableValues];
         }else if([@"/" isEqual:operation]){
-            double divisor = [self popOperandOffProgramStack:stack usingCalculation:degreesToRadians];
+            double divisor = [self popOperandOffProgramStack:stack usingCalculation:degreesToRadians usingVariableValues:variableValues];
             if(divisor)
             {
-                result = [self popOperandOffProgramStack:stack usingCalculation:degreesToRadians] / divisor;
+                result = [self popOperandOffProgramStack:stack usingCalculation:degreesToRadians usingVariableValues:variableValues] / divisor;
             }
         } else if([operation isEqualToString:@"PI"]){
         result = (double)M_PI;;
         } else if([operation isEqualToString:@"sqrt"]){
             // thus this is a single operator operation, execute immidiately
-            result = sqrt([self popOperandOffProgramStack:stack usingCalculation:degreesToRadians]);
+            result = sqrt([self popOperandOffProgramStack:stack usingCalculation:degreesToRadians usingVariableValues:variableValues]);
         }else if([operation isEqualToString:@"CHS"]){
-            result = - [self popOperandOffProgramStack:stack usingCalculation:degreesToRadians];
+            result = - [self popOperandOffProgramStack:stack usingCalculation:degreesToRadians usingVariableValues:variableValues];
         }else if([operation isEqualToString:@"1/x"]){
-            result = 1/[self popOperandOffProgramStack:stack usingCalculation:degreesToRadians];
+            result = 1/[self popOperandOffProgramStack:stack usingCalculation:degreesToRadians usingVariableValues:variableValues];
         }else if([operation isEqualToString:@"sin"]){
-            double argument = [self popOperandOffProgramStack:stack usingCalculation:degreesToRadians];
+            double argument = [self popOperandOffProgramStack:stack usingCalculation:degreesToRadians usingVariableValues:variableValues];
             if (degreesToRadians) argument = argument * 2 * (double)M_PI / 360.0;
             result = sin(argument);
         }else if([operation isEqualToString:@"cos"]){
-            double argument = [self popOperandOffProgramStack:stack usingCalculation:degreesToRadians];
+            double argument = [self popOperandOffProgramStack:stack usingCalculation:degreesToRadians usingVariableValues:variableValues];
             if (degreesToRadians) argument = argument * 2 * (double)M_PI / 360.0;
             result = cos(argument);
+        }else{
+            // variable
+            NSString * variable = operation;
+            result = [self lookUpValueforVariable:variable InDictionary:variableValues];
         }
+    }
+    return result;
+}
+
++(double)lookUpValueforVariable:(NSString*) variable InDictionary:(NSDictionary *)variableValues
+{
+    NSNumber * number;
+    double result = 0;
+    if ([[variableValues objectForKey:variable] isKindOfClass:[NSNumber class]]){
+        number = [variableValues objectForKey:variable];
+        result = [number doubleValue];
     }
     return result;
 }

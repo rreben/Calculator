@@ -19,10 +19,11 @@
 + (double)runProgram:(id)program usingCalculation: (BOOL)degreesToRadians usingVariableValues:(NSDictionary *)variableValues;
 + (NSSet *)variablesUsedInProgram:(id)program;
 +(NSString *)getRidOfSuperfluousOuterBrackets: (NSString*) inputString;
-
++(double)lookUpValueforVariable:(NSString*) variable InDictionary:(NSDictionary *)variableValues;
 
 -(void)pushOperand:(double)operand;
--(double)performOperation:(NSString*)operation;
+-(void)pushVariable:(NSString *)variable;
+-(double)performOperation:(NSString*)operation usingVariableValues:(NSDictionary *)variableValues;
 -(void)performClearCommand;
 -(NSString *)descriptionOfProgram;
 

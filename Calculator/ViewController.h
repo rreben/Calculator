@@ -19,9 +19,11 @@
 }
 
 @property (nonatomic,strong) CalculatorBrain * brain;
+@property (nonatomic,strong) NSDictionary * testVariableValues;
 
 -(IBAction)enterPressed;
 -(IBAction)digitPressed:(UIButton *)sender;
 -(IBAction)operationPressed:(UIButton *)sender;
+-(IBAction)variableEntered:(UIButton *)sender;
 -(IBAction)commandPressed:(UIButton *)sender;
 @end
