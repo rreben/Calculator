@@ -104,7 +104,7 @@
             NSString * divisor = [self popRHSItemOffStack:stack];
                 result = [result stringByAppendingFormat:@"%@ %@ %@",[self popRHSItemOffStack:stack],@"/",divisor];
         } else if([operation isEqualToString:@"PI"]){
-            result = [result stringByAppendingFormat:@"%g",(double)M_PI];
+            result = [result stringByAppendingFormat:@"%@",@"π"];
         } else if([operation isEqualToString:@"sqrt"]){
             // thus this is a single operator operation, execute immidiately
             result = [result stringByAppendingFormat:@"%@%@%@",@"sqrt(",[[self class] getRidOfSuperfluousOuterBrackets:[self popRHSItemOffStack:stack]],@")"];
@@ -116,6 +116,8 @@
             result = [result stringByAppendingFormat:@"%@%@%@",@"sin(",[[self class] getRidOfSuperfluousOuterBrackets:[self popRHSItemOffStack:stack]],@")"];
         }else if([operation isEqualToString:@"cos"]){
             result = [result stringByAppendingFormat:@"%@%@%@",@"cos(",[[self class] getRidOfSuperfluousOuterBrackets:[self popRHSItemOffStack:stack]],@")"];
+        }else{
+            result = [result stringByAppendingFormat:@"%@",operation];
         }
     }
 
