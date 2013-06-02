@@ -59,6 +59,10 @@
     }
     return [[self class] getRidOfSuperfluousOuterBrackets:result];
 }
+
+// To prevent superfluous brackets, the recursive methods would have to know, whether the calling
+// recursion has a higher arithmetic rank. You can do so by passing some information between recursive calls.
+// However it is easier for the caller to examine the result of the callee and suppress superfluous brackets.
 +(NSString *)getRidOfSuperfluousOuterBrackets: (NSString*) inputString{
     if (inputString){
         if (![inputString isEqualToString:@""]){
