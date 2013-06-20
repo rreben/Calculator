@@ -7,6 +7,8 @@
 //
 
 #import "CalculatorTests.h"
+#import "CalculatorBrain.h"
+#import "ViewController.h"
 
 @implementation CalculatorTests
 
@@ -113,6 +115,28 @@
     double result = [[brain class] runProgram:brain.program usingCalculation:NO usingVariableValues:variableValues];
     STAssertTrue(result == 5.2, @"3+r=5.2");
 }
+
+-(void)testVariablesUsedInProgram
+{
+    CalculatorBrain * brain;
+    NSDictionary * variableValues =[NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:[NSNumber numberWithDouble:2.2],
+                                                                        [NSNumber numberWithDouble:3.3], nil]
+                                                               forKeys:[NSArray arrayWithObjects:@"r",@"foo",nil]];
+    brain = [[CalculatorBrain alloc] init];
+    [brain pushOperand:3.0];
+    [brain pushVariable:@"r"];
+    [brain performOperation:@"+" usingVariableValues:nil];
+    NSString * usedVariablesAndValues;
+    
+    ViewController * vc = [[ViewController alloc] init];
+    vc.brain = brain;
+    vc.testVariableValues = variableValues;
+    
+    usedVariablesAndValues = [vc variablesUsed];
+    STAssertTrue([usedVariablesAndValues isEqualToString:@"r = 2.2" ],@"variablesUsed");
+    
+}
+
 
 //+ π r r * * should display as π * (r * r) or, even better, π * r * r
 //+ a a * b b * + sqrt would be, at best, sqrt(a * a + b * b)

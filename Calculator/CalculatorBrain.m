@@ -34,7 +34,45 @@
 }
 
 + (NSSet *)variablesUsedInProgram:(id)program{
-    return nil;
+    NSSet * result;
+    result = [[NSSet class] set];
+    NSMutableArray *stack;
+    if ([program isKindOfClass:[NSArray class]]) {
+        stack = [program mutableCopy];
+    }
+    if (stack)
+    {
+        while ([stack count] > 0) {
+            id topOfStack = [stack lastObject];
+            if (topOfStack) [stack removeLastObject];
+            if ([topOfStack isKindOfClass:[NSString class]]){
+                NSString * value = topOfStack;
+                if (![value isEqualToString:@"+"]
+                    &&
+                    ![value isEqualToString:@"-"]
+                    &&
+                    ![value isEqualToString:@"x"]
+                    &&
+                    ![value isEqualToString:@"/"]
+                    &&
+                    ![value isEqualToString:@"1/x"]
+                    &&
+                    ![value isEqualToString:@"sqrt"]
+                    &&
+                    ![value isEqualToString:@"cos"]
+                    &&
+                    ![value isEqualToString:@"sin"]
+                    &&
+                    ![value isEqualToString:@"PI"]
+                    &&
+                    ![value isEqualToString:@"CHS"]
+                    )
+                    // no operator thus variable
+                result = [result setByAddingObject:value];
+            }
+        }
+    }
+    return result;
 }
 
 -(NSString *)descriptionOfProgram{

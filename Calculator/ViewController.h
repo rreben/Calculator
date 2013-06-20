@@ -26,4 +26,6 @@
 -(IBAction)operationPressed:(UIButton *)sender;
 -(IBAction)variableEntered:(UIButton *)sender;
 -(IBAction)commandPressed:(UIButton *)sender;
+
+-(NSString *)variablesUsed;
 @end

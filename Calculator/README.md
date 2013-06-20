@@ -65,9 +65,9 @@ Assignment 2 (fall 2011)
   + One of them should set testVariableValues to nil. 
   + update the rest of your UI when you change testVariableValues by pressing one of these test buttons. 
   + Make sure that your preset values are good edge-cases for testing
-+ Re-implement the descriptionOfProgram: 
-  + unary operands: 10 sqrt as sqrt(10)
-  + binary operands: 3 E 5 + as 3 + 5
++ Re-implement the descriptionOfProgram: (done)
+  + unary operands: 10 sqrt as sqrt(10) (done)
+  + binary operands: 3 E 5 + as 3 + 5 (done)
   + Any no-operand operations, like π, should appear unadorned. For example, π
   + Variables (Required Task #1) should also appear unadorned. For example, x
   + Testing
@@ -78,7 +78,7 @@ Assignment 2 (fall 2011)
     + π r r * * should display as π * (r * r) or, even better, π * r * r
     + a a * b b * + sqrt would be, at best, sqrt(a * a + b * b)
     + 3 E 5 + 6 * is not 3 + 5 * 6, it is (3 + 5) * 6
-  + Separate multiple things on stack with commas
+  + Separate multiple things on stack with commas (done)
     + 3 E 5 E as 5, 3
     + 3 E 5 + 6 E 7 * 9 sqrt would be “sqrt(9), 6 * 7, 3 + 5”
 + Add an Undo button to your calculator. 

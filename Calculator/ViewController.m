@@ -202,6 +202,20 @@ static NSString *CalculatorTrigonometryContext = @"com.convincingapps.calculator
     }
 }
 
+-(NSString *)variablesUsed{
+    NSString * returnString = @"";
+    NSSet *set = [[self.brain class] variablesUsedInProgram:[self.brain program]];
+    NSEnumerator *enumerator = [set objectEnumerator];
+    id value;
+    
+    while ((value = [enumerator nextObject])) {
+        NSString * variableName = value;
+        double result = [[self.brain class] lookUpValueforVariable:variableName InDictionary:self.testVariableValues];
+        NSLog(@"%@ = %g",value, result);
+        returnString = [returnString stringByAppendingFormat:@"%@ = %g",variableName, result];
+    }
+    return returnString;
+}
 
 - (void)appendToCalculation:(NSString*) text {
     [inputStrip setText:[[inputStrip text] stringByAppendingString:[NSString stringWithFormat:@"%@ ", text]]];
