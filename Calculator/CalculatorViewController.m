@@ -34,6 +34,10 @@ static NSString *CalculatorTrigonometryContext = @"com.convincingapps.calculator
     return UIInterfaceOrientationMaskLandscape;
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    [[self navigationController] setNavigationBarHidden:YES animated:YES];
+}
+
 -(void)dealloc{
 //    [brain removeObserver:self forKeyPath:@"memoryValue"];
 //    [brain release]; // forbidden in new llvm
@@ -246,7 +250,6 @@ static NSString *CalculatorTrigonometryContext = @"com.convincingapps.calculator
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [[self navigationController] setNavigationBarHidden:YES];
     NSNotificationCenter* center =[NSNotificationCenter defaultCenter];
     [center addObserver:self
                selector:@selector(defaultsChanged:)
