@@ -8,7 +8,7 @@
 
 #import "CalculatorTests.h"
 #import "CalculatorBrain.h"
-#import "ViewController.h"
+#import "CalculatorViewController.h"
 
 @implementation CalculatorTests
 
@@ -128,7 +128,7 @@
     [brain performOperation:@"+" usingVariableValues:nil];
     NSString * usedVariablesAndValues;
     
-    ViewController * vc = [[ViewController alloc] init];
+    CalculatorViewController * vc = [[CalculatorViewController alloc] init];
     vc.brain = brain;
     vc.testVariableValues = variableValues;
     

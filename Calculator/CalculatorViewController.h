@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "CalculatorBrain.h"
 
-@interface ViewController : UIViewController{
+@interface CalculatorViewController : UIViewController{
     IBOutlet UILabel *display;
     IBOutlet UILabel *memoryDisplay;
     IBOutlet UILabel *trigonometryDisplay;

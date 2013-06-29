@@ -19,12 +19,13 @@
 		DE52A07416E53B7800FD051D /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = DE52A07316E53B7800FD051D /* Default.png */; };
 		DE52A07616E53B7800FD051D /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DE52A07516E53B7800FD051D /* Default@2x.png */; };
 		DE52A07816E53B7800FD051D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DE52A07716E53B7800FD051D /* Default-568h@2x.png */; };
-		DE52A07B16E53B7800FD051D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE52A07A16E53B7800FD051D /* ViewController.m */; };
+		DE52A07B16E53B7800FD051D /* CalculatorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE52A07A16E53B7800FD051D /* CalculatorViewController.m */; };
 		DE96FA0B1757EBDC00DE601C /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE96FA0A1757EBDC00DE601C /* SenTestingKit.framework */; };
 		DE96FA0C1757EBDC00DE601C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE52A06116E53B7800FD051D /* UIKit.framework */; };
 		DE96FA0D1757EBDC00DE601C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE52A06316E53B7800FD051D /* Foundation.framework */; };
 		DE96FA131757EBDC00DE601C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DE96FA111757EBDC00DE601C /* InfoPlist.strings */; };
 		DE96FA161757EBDC00DE601C /* CalculatorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DE96FA151757EBDC00DE601C /* CalculatorTests.m */; };
+		DEC4CE05177EF1DB00EB7E5E /* AxesDrawer.m in Sources */ = {isa = PBXBuildFile; fileRef = DEC4CE04177EF1DB00EB7E5E /* AxesDrawer.m */; };
 		DED6D8A91709B67100136906 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = DED6D8A81709B67100136906 /* README.md */; };
 		DED6F42016E91F0B00146944 /* CalculatorBrain.m in Sources */ = {isa = PBXBuildFile; fileRef = DED6F41F16E91F0B00146944 /* CalculatorBrain.m */; };
 /* End PBXBuildFile section */
@@ -55,8 +56,8 @@
 		DE52A07316E53B7800FD051D /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		DE52A07516E53B7800FD051D /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		DE52A07716E53B7800FD051D /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		DE52A07916E53B7800FD051D /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		DE52A07A16E53B7800FD051D /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		DE52A07916E53B7800FD051D /* CalculatorViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CalculatorViewController.h; sourceTree = "<group>"; };
+		DE52A07A16E53B7800FD051D /* CalculatorViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CalculatorViewController.m; sourceTree = "<group>"; };
 		DE96FA091757EBDC00DE601C /* CalculatorTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CalculatorTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE96FA0A1757EBDC00DE601C /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		DE96FA101757EBDC00DE601C /* CalculatorTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CalculatorTests-Info.plist"; sourceTree = "<group>"; };
@@ -64,6 +65,8 @@
 		DE96FA141757EBDC00DE601C /* CalculatorTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CalculatorTests.h; sourceTree = "<group>"; };
 		DE96FA151757EBDC00DE601C /* CalculatorTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CalculatorTests.m; sourceTree = "<group>"; };
 		DE96FA171757EBDC00DE601C /* CalculatorTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CalculatorTests-Prefix.pch"; sourceTree = "<group>"; };
+		DEC4CE03177EF1DB00EB7E5E /* AxesDrawer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AxesDrawer.h; sourceTree = "<group>"; };
+		DEC4CE04177EF1DB00EB7E5E /* AxesDrawer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AxesDrawer.m; sourceTree = "<group>"; };
 		DED6D8A81709B67100136906 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		DED6F41E16E91F0B00146944 /* CalculatorBrain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalculatorBrain.h; sourceTree = "<group>"; };
 		DED6F41F16E91F0B00146944 /* CalculatorBrain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalculatorBrain.m; sourceTree = "<group>"; };
@@ -126,11 +129,13 @@
 		DE52A06716E53B7800FD051D /* Calculator */ = {
 			isa = PBXGroup;
 			children = (
+				DEC4CE03177EF1DB00EB7E5E /* AxesDrawer.h */,
+				DEC4CE04177EF1DB00EB7E5E /* AxesDrawer.m */,
 				DED6D8A81709B67100136906 /* README.md */,
 				DE52A07016E53B7800FD051D /* AppDelegate.h */,
 				DE52A07116E53B7800FD051D /* AppDelegate.m */,
-				DE52A07916E53B7800FD051D /* ViewController.h */,
-				DE52A07A16E53B7800FD051D /* ViewController.m */,
+				DE52A07916E53B7800FD051D /* CalculatorViewController.h */,
+				DE52A07A16E53B7800FD051D /* CalculatorViewController.m */,
 				DE00C0611775BD2E00DD600B /* Storyboard.storyboard */,
 				DED6F41E16E91F0B00146944 /* CalculatorBrain.h */,
 				DED6F41F16E91F0B00146944 /* CalculatorBrain.m */,
@@ -289,8 +294,9 @@
 			files = (
 				DE52A06E16E53B7800FD051D /* main.m in Sources */,
 				DE52A07216E53B7800FD051D /* AppDelegate.m in Sources */,
-				DE52A07B16E53B7800FD051D /* ViewController.m in Sources */,
+				DE52A07B16E53B7800FD051D /* CalculatorViewController.m in Sources */,
 				DED6F42016E91F0B00146944 /* CalculatorBrain.m in Sources */,
+				DEC4CE05177EF1DB00EB7E5E /* AxesDrawer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

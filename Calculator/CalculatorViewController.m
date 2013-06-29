@@ -6,11 +6,11 @@
 //  Copyright (c) 2013 Rupert Rebentisch. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "CalculatorViewController.h"
 #import "CalculatorBrain.h"
 
 
-@interface ViewController (){
+@interface CalculatorViewController (){
     BOOL userIsInTheMiddleOfTypingANumber;
 //    BOOL userHasAlreadyPressedDecimalDelimeter;
 }
@@ -21,7 +21,7 @@ static NSString *CalculatorMemoryContext = @"com.convincingapps.calculator.calcu
 static NSString *CalculatorTrigonometryContext = @"com.convincingapps.calculator.caclculatorTrigonometryContext";
 
 
-@implementation ViewController
+@implementation CalculatorViewController
 
 @synthesize brain = _brain;
 @synthesize testVariableValues = _testVariableValues;
@@ -246,6 +246,7 @@ static NSString *CalculatorTrigonometryContext = @"com.convincingapps.calculator
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [[self navigationController] setNavigationBarHidden:YES];
     NSNotificationCenter* center =[NSNotificationCenter defaultCenter];
     [center addObserver:self
                selector:@selector(defaultsChanged:)
