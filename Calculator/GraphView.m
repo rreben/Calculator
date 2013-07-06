@@ -25,10 +25,6 @@
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect
 {
-    CGRect labelRect = CGRectMake(20, 20, 50, 30);
-    UILabel *label = [[UILabel alloc] initWithFrame:labelRect];
-    [label setText:@"hello"];
-    [self addSubview:label];
     CGRect graphRect = CGRectMake(self.bounds.origin.x, self.bounds.origin.y, self.bounds.size.width, self.bounds.size.height);
     CGPoint origin = CGPointMake(self.bounds.origin.x + self.bounds.size.width / 2, self.bounds.origin.y + self.bounds.size.height / 2);
     [AxesDrawer drawAxesInRect:graphRect originAtPoint:origin scale:1.0];
