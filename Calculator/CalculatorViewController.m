@@ -8,6 +8,7 @@
 
 #import "CalculatorViewController.h"
 #import "CalculatorBrain.h"
+#import "GraphViewController.h"
 
 
 @interface CalculatorViewController (){
@@ -240,6 +241,14 @@ static NSString *CalculatorTrigonometryContext = @"com.convincingapps.calculator
         self.brain.calculatingDegreesToRadians = YES;
     if ([[self userSettingUnitForCalculationTrigonometricFunctions] isEqualToString:@"radians"])
         self.brain.calculatingDegreesToRadians = NO;    
+}
+
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"ShowGraph"]) {
+        GraphViewController *gvc = segue.destinationViewController;
+        gvc.programToGraph = self.brain.program;
+    }
 }
 
 -(void)defaultsChanged:(NSNotification*)notification {

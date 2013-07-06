@@ -7,12 +7,15 @@
 //
 
 #import "GraphViewController.h"
+#import "CalculatorBrain.h"
 
 @interface GraphViewController ()
 
 @end
 
 @implementation GraphViewController
+@synthesize programToGraph;
+@synthesize descriptionOfProgram;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -27,6 +30,7 @@
 {
     [super viewDidLoad];
     [[self navigationController] setNavigationBarHidden:NO];
+    [self.descriptionOfProgram setText:[CalculatorBrain descriptionOfProgram:self.programToGraph]];
 }
 
 - (void)didReceiveMemoryWarning

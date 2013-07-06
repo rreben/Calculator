@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface GraphViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UILabel *descriptionOfProgram;
+@property (nonatomic, strong) id programToGraph; // program for caclulator brain
 
 @end
