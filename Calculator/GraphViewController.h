@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GraphCalculatorProtocol.h"
 
-@interface GraphViewController : UIViewController
+@interface GraphViewController : UIViewController <GraphCalculatorProtocol>
 @property (weak, nonatomic) IBOutlet UILabel *descriptionOfProgram;
 @property (nonatomic, strong) id programToGraph; // program for caclulator brain
 

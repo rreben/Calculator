@@ -27,6 +27,10 @@ static NSString *CalculatorTrigonometryContext = @"com.convincingapps.calculator
 @synthesize brain = _brain;
 @synthesize testVariableValues = _testVariableValues;
 
+
+
+
+
 -(BOOL)shouldAutorotate {
     return YES;
 }

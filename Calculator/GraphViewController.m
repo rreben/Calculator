@@ -8,6 +8,7 @@
 
 #import "GraphViewController.h"
 #import "CalculatorBrain.h"
+#import "GraphView.h"
 
 @interface GraphViewController ()
 
@@ -29,6 +30,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+//    GraphView * gv = (GraphView*) self.view;
+//    gv.caclulatorDelegate = self;
     [[self navigationController] setNavigationBarHidden:NO];
     [self.descriptionOfProgram setText:[CalculatorBrain descriptionOfProgram:self.programToGraph]];
 }
@@ -38,5 +41,12 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+#pragma mark GraphCalculatorProtocol
+
+-(double)ValueOfGraphAt:(double)x withCalculator:(id)calculator{
+    return x * x *0.025 -50;
+}
+
 
 @end

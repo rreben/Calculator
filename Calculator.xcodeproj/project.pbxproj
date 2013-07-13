@@ -67,6 +67,7 @@
 		DE96FA141757EBDC00DE601C /* CalculatorTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CalculatorTests.h; sourceTree = "<group>"; };
 		DE96FA151757EBDC00DE601C /* CalculatorTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CalculatorTests.m; sourceTree = "<group>"; };
 		DE96FA171757EBDC00DE601C /* CalculatorTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CalculatorTests-Prefix.pch"; sourceTree = "<group>"; };
+		DEBE04F417916E620048CA20 /* GraphCalculatorProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GraphCalculatorProtocol.h; sourceTree = "<group>"; };
 		DEC4CE03177EF1DB00EB7E5E /* AxesDrawer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AxesDrawer.h; sourceTree = "<group>"; };
 		DEC4CE04177EF1DB00EB7E5E /* AxesDrawer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AxesDrawer.m; sourceTree = "<group>"; };
 		DEC4CE06177EF70900EB7E5E /* GraphViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GraphViewController.h; sourceTree = "<group>"; };
@@ -144,6 +145,7 @@
 				DEC4CE0A177EFD4000EB7E5E /* GraphView.m */,
 				DE52A07916E53B7800FD051D /* CalculatorViewController.h */,
 				DE52A07A16E53B7800FD051D /* CalculatorViewController.m */,
+				DEBE04F417916E620048CA20 /* GraphCalculatorProtocol.h */,
 				DEC4CE06177EF70900EB7E5E /* GraphViewController.h */,
 				DEC4CE07177EF70900EB7E5E /* GraphViewController.m */,
 				DE00C0611775BD2E00DD600B /* Storyboard.storyboard */,
