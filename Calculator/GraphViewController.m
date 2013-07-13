@@ -32,6 +32,15 @@
     [super viewDidLoad];
 //    GraphView * gv = (GraphView*) self.view;
 //    gv.caclulatorDelegate = self;
+    
+    UIPanGestureRecognizer *pangr =
+    [[UIPanGestureRecognizer alloc] initWithTarget:self.view action:@selector(pan:)];
+    [self.view addGestureRecognizer:pangr];
+    
+    UIPinchGestureRecognizer * pnchgr =
+    [[UIPinchGestureRecognizer alloc] initWithTarget:self.view action:@selector(pinch:)];
+    [self.view addGestureRecognizer:pnchgr];
+    
     [[self navigationController] setNavigationBarHidden:NO];
     [self.descriptionOfProgram setText:[CalculatorBrain descriptionOfProgram:self.programToGraph]];
 }
