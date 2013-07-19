@@ -15,7 +15,7 @@
 @end
 
 @implementation GraphViewController
-@synthesize programToGraph;
+@synthesize programToGraph =_programToGraph;
 @synthesize descriptionOfProgram;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -26,6 +26,13 @@
     }
     return self;
 }
+
+-(void)setProgramToGraph:(id)programToGraph{
+    _programToGraph = programToGraph;
+    [self.descriptionOfProgram setText:[CalculatorBrain descriptionOfProgram:self.programToGraph]];
+    [self.view setNeedsDisplay];
+}
+
 
 - (void)viewDidLoad
 {
