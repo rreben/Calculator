@@ -27,6 +27,7 @@
 -(IBAction)operationPressed:(UIButton *)sender;
 -(IBAction)variableEntered:(UIButton *)sender;
 -(IBAction)commandPressed:(UIButton *)sender;
+-(IBAction)graphPressed:(UIButton *)sender; // only wire up in ipad storyboard
 
 -(NSString *)variablesUsed;
 @end

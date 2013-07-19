@@ -247,13 +247,20 @@ static NSString *CalculatorTrigonometryContext = @"com.convincingapps.calculator
         self.brain.calculatingDegreesToRadians = NO;    
 }
 
-
+// in case of iphone storyboard a segue exists
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"ShowGraph"]) {
         GraphViewController *gvc = segue.destinationViewController;
         gvc.programToGraph = self.brain.program;
     }
 }
+
+// in case of ipad storyboard the Graph button is wired via target action
+-(IBAction)graphPressed:(UIButton *)sender{
+    GraphViewController *gvc = [self.splitViewController.viewControllers lastObject];
+    gvc.programToGraph = self.brain.program;
+}
+
 
 -(void)defaultsChanged:(NSNotification*)notification {
     [self toggleDegreesVsRadiansInBrain];
