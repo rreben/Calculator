@@ -41,6 +41,11 @@
     [[UIPinchGestureRecognizer alloc] initWithTarget:self.view action:@selector(pinch:)];
     [self.view addGestureRecognizer:pnchgr];
     
+    UITapGestureRecognizer * trptapgr =
+    [[UITapGestureRecognizer alloc] initWithTarget:self.view action:@selector(tripleTap:)];
+    trptapgr.numberOfTapsRequired = 3;
+    [self.view addGestureRecognizer:trptapgr];
+
     [[self navigationController] setNavigationBarHidden:NO];
     [self.descriptionOfProgram setText:[CalculatorBrain descriptionOfProgram:self.programToGraph]];
 }

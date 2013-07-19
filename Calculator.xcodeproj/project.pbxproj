@@ -20,6 +20,7 @@
 		DE52A07616E53B7800FD051D /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DE52A07516E53B7800FD051D /* Default@2x.png */; };
 		DE52A07816E53B7800FD051D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DE52A07716E53B7800FD051D /* Default-568h@2x.png */; };
 		DE52A07B16E53B7800FD051D /* CalculatorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE52A07A16E53B7800FD051D /* CalculatorViewController.m */; };
+		DE91B4B817987C3200F1E4A5 /* iPadStoryBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE91B4B717987C3200F1E4A5 /* iPadStoryBoard.storyboard */; };
 		DE96FA0B1757EBDC00DE601C /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE96FA0A1757EBDC00DE601C /* SenTestingKit.framework */; };
 		DE96FA0C1757EBDC00DE601C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE52A06116E53B7800FD051D /* UIKit.framework */; };
 		DE96FA0D1757EBDC00DE601C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE52A06316E53B7800FD051D /* Foundation.framework */; };
@@ -60,6 +61,7 @@
 		DE52A07716E53B7800FD051D /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		DE52A07916E53B7800FD051D /* CalculatorViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CalculatorViewController.h; sourceTree = "<group>"; };
 		DE52A07A16E53B7800FD051D /* CalculatorViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CalculatorViewController.m; sourceTree = "<group>"; };
+		DE91B4B717987C3200F1E4A5 /* iPadStoryBoard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = iPadStoryBoard.storyboard; path = ../iPadStoryBoard.storyboard; sourceTree = "<group>"; };
 		DE96FA091757EBDC00DE601C /* CalculatorTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CalculatorTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE96FA0A1757EBDC00DE601C /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		DE96FA101757EBDC00DE601C /* CalculatorTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CalculatorTests-Info.plist"; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 				DEBE04F417916E620048CA20 /* GraphCalculatorProtocol.h */,
 				DEC4CE06177EF70900EB7E5E /* GraphViewController.h */,
 				DEC4CE07177EF70900EB7E5E /* GraphViewController.m */,
+				DE91B4B717987C3200F1E4A5 /* iPadStoryBoard.storyboard */,
 				DE00C0611775BD2E00DD600B /* Storyboard.storyboard */,
 				DED6F41E16E91F0B00146944 /* CalculatorBrain.h */,
 				DED6F41F16E91F0B00146944 /* CalculatorBrain.m */,
@@ -269,6 +272,7 @@
 				DED6D8A91709B67100136906 /* README.md in Resources */,
 				DE04215E1722B5DB00C79E10 /* Settings.bundle in Resources */,
 				DE00C0621775BD2E00DD600B /* Storyboard.storyboard in Resources */,
+				DE91B4B817987C3200F1E4A5 /* iPadStoryBoard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -414,8 +418,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Calculator/Calculator-Prefix.pch";
 				INFOPLIST_FILE = "Calculator/Calculator-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -426,8 +431,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Calculator/Calculator-Prefix.pch";
 				INFOPLIST_FILE = "Calculator/Calculator-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
