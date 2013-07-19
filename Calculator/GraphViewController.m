@@ -29,8 +29,10 @@
 
 -(void)setProgramToGraph:(id)programToGraph{
     _programToGraph = programToGraph;
-    [self.descriptionOfProgram setText:[CalculatorBrain descriptionOfProgram:self.programToGraph]];
-    [self.view setNeedsDisplay];
+    if (self.splitViewController) {
+        [self.descriptionOfProgram setText:[CalculatorBrain descriptionOfProgram:self.programToGraph]];
+        [self.view setNeedsDisplay];
+    }
 }
 
 
