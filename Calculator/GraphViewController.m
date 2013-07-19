@@ -59,7 +59,13 @@
 #pragma mark GraphCalculatorProtocol
 
 -(double)ValueOfGraphAt:(double)x withCalculator:(id)calculator{
-    return x * x *0.025 -50;
+//    return x * x *0.025 -50;
+    
+    NSDictionary * variableValues =[NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:[NSNumber numberWithDouble:x], nil]
+                                                               forKeys:[NSArray arrayWithObjects:@"r",nil]];
+    double result = [CalculatorBrain runProgram:self.programToGraph usingCalculation:NO usingVariableValues:variableValues];
+    return result;
+    
 }
 
 
